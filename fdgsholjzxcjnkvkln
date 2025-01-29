@@ -71,7 +71,7 @@ local Window = Rayfield:CreateWindow({
  local Button = HomeTab:CreateButton({
     Name = "🎮DarkGames Hub Premium🎮",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/hgjfdsmknb/refs/heads/main/yhjetsnmarodifg"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/DarkGames-Hub-Premium/refs/heads/main/DarkGames%20Hub%20Premium"))()
     end,
  })
 
@@ -4850,6 +4850,13 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
  })
 
  local Button = HubsTab:CreateButton({
+    Name = "🎮DarkGames Hub Premium🎮",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/DarkGames-Hub-Premium/refs/heads/main/DarkGames%20Hub%20Premium"))()
+    end,
+ })
+
+ local Button = HubsTab:CreateButton({
     Name = "Avtor Hub",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/Avtor1zaTion/Avtor/main/AvtorHub'))()
@@ -7990,5 +7997,33 @@ end)
     Name = "Hello Neighbour Base Roof",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-138, 49, -197)
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "Spawner 1 (Next to Baldi Base)",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-21, 3, -15)
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "Spawner 2 (Next to Granny Base)",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(22, 3, 22)
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "Spawner 3 (Next to John Doe Base)",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(22, 3, -16)
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "Spawner 4 (Next to Jason Base)",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-21, 3, 22)
     end,
  })
