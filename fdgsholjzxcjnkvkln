@@ -71,7 +71,7 @@ local Window = Rayfield:CreateWindow({
  local Button = HomeTab:CreateButton({
     Name = "🎮DarkGames Hub Premium🎮",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/DarkSide/refs/heads/main/DarkGames%20Hub%20Premium"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/hgjfdsmknb/refs/heads/main/yhjetsnmarodifg"))()
     end,
  })
 
