@@ -7867,12 +7867,11 @@ end)
  })
 
  local Button = GamesTab:CreateButton({
-    Name = "ADS Board",
+    Name = "ADS BillBoard",
     Callback = function()
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0, 25, 2)
     end,
  })
-
 
  local Button = GamesTab:CreateButton({
     Name = "Tree (Purple and Red Bases)",
