@@ -277,20 +277,46 @@ end)
  })
 
  local Button = HomeTab:CreateButton({
-    Name = "AutoClicker Gui",
-    Callback = function()
-getgenv().key = "Hostile"
-loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/The-telligence/main/MC%20KSystem%202"))()
-    end,
- })
-
- local Button = HomeTab:CreateButton({
     Name = "Swim Gui",
     Callback = function()
         loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-Fe-swim-R6-and-R15-18308"))("t.me/arceusxscripts")
     end,
  })
 
+ local Button = HomeTab:CreateButton({
+    Name = "Flashlight (Press F)",
+    Callback = function()
+        local Player = game.Players.LocalPlayer
+local Character = Player.Character or Player.CharacterAdded:Wait()
+
+local UserInputService = game:GetService("UserInputService")
+local Enabled = false
+local Light
+	
+UserInputService.InputBegan:Connect(function(input)
+	if input.KeyCode == Enum.KeyCode.F then
+		if not Enabled then
+			Enabled = true
+			Light = Instance.new("SpotLight", Character.Head)
+			Light.Brightness = 7
+			Light.Range = 1000
+		else
+			Light:Destroy()
+			Enabled = false
+		end
+	end
+end)
+    end,
+ })
+
+ local Button = HomeTab:CreateButton({
+    Name = "AutoClicker Gui",
+    Callback = function()
+getgenv().key = "Hostile"
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/The-telligence/main/MC%20KSystem%202"))()
+    end,
+ })
+ 
  local AdminTab = Window:CreateTab("🩸Admin Scripts", 4483362458) -- Title, Image
  local AdminSection = AdminTab:CreateSection("Admin")
 
