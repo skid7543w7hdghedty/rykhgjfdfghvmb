@@ -7533,18 +7533,9 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "Chat Art (Many Colors)",
+    Name = "Bypasser (New chat version)",
     Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/s5rtS3DB"))(
-     'More scripts: t.me/arceusxscripts'
-)
-    end,
- })
-
- local Button = TrollTab:CreateButton({
-    Name = "Chat Art (2 Colors)",
-    Callback = function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-chat-draw-script-17621"))()
+        loadstring(game:HttpGet("https://pastefy.app/9HWD0emH/raw"))()
     end,
  })
 
@@ -7552,6 +7543,15 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
     Name = "Russian bypasser (lelele)",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/08QdLK2Y"))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "Chat Art (Many Colors)",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/s5rtS3DB"))(
+     'More scripts: t.me/arceusxscripts'
+)
     end,
  })
 
@@ -9500,6 +9500,13 @@ end)
  })
 
  local Button = ServerTab:CreateButton({
+    Name = "Anti-Chat Logger (Anti-Ban for Messages)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua", true))()
+    end,
+ })
+
+ local Button = ServerTab:CreateButton({
     Name = "Rejoin Button on Kick",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/GGH52lan/GGH52lan/main/Rejoin_Button.txt"))()
@@ -10601,6 +10608,13 @@ for i,v in pairs(cors) do
 		pcall(v)
 	end)
 end
+    end,
+ })
+
+ local Button = ToolsTab:CreateButton({
+    Name = "Torch",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Ahma174/Tool/refs/heads/main/Torch%20V3"))()("T.me/AvtorScripts")
     end,
  })
 
