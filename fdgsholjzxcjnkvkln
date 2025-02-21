@@ -1,12 +1,52 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+{
+    TextColor = Color3.fromRGB(240, 240, 240),
+
+    Background = Color3.fromRGB(0, 0, 0),
+    Topbar = Color3.fromRGB(34, 34, 34),
+    Shadow = Color3.fromRGB(20, 20, 20),
+
+    NotificationBackground = Color3.fromRGB(20, 20, 20),
+    NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
+
+    TabBackground = Color3.fromRGB(80, 80, 80),
+    TabStroke = Color3.fromRGB(85, 85, 85),
+    TabBackgroundSelected = Color3.fromRGB(210, 210, 210),
+    TabTextColor = Color3.fromRGB(240, 240, 240),
+    SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
+
+    ElementBackground = Color3.fromRGB(35, 35, 35),
+    ElementBackgroundHover = Color3.fromRGB(40, 40, 40),
+    SecondaryElementBackground = Color3.fromRGB(25, 25, 25),
+    ElementStroke = Color3.fromRGB(50, 50, 50),
+    SecondaryElementStroke = Color3.fromRGB(40, 40, 40),
+            
+    SliderBackground = Color3.fromRGB(50, 138, 220),
+    SliderProgress = Color3.fromRGB(50, 138, 220),
+    SliderStroke = Color3.fromRGB(58, 163, 255),
+
+    ToggleBackground = Color3.fromRGB(30, 30, 30),
+    ToggleEnabled = Color3.fromRGB(0, 146, 214),
+    ToggleDisabled = Color3.fromRGB(100, 100, 100),
+    ToggleEnabledStroke = Color3.fromRGB(0, 170, 255),
+    ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
+    ToggleEnabledOuterStroke = Color3.fromRGB(100, 100, 100),
+    ToggleDisabledOuterStroke = Color3.fromRGB(65, 65, 65),
+
+    DropdownSelected = Color3.fromRGB(40, 40, 40),
+    DropdownUnselected = Color3.fromRGB(30, 30, 30),
+
+    InputBackground = Color3.fromRGB(30, 30, 30),
+    InputStroke = Color3.fromRGB(65, 65, 65),
+    PlaceholderColor = Color3.fromRGB(178, 178, 178)
+}
 
 local Window = Rayfield:CreateWindow({
     Name = "🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️",
     Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
     LoadingTitle = "✅The BEST Premium Hub, Enjoy✅",
     LoadingSubtitle = "💀by Who? D A R K💀",
-    Theme = "Amber Glow", -- Check https://docs.sirius.menu/rayfield/configuration/themes
- 
+
     DisableRayfieldPrompts = false,
     DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
  
@@ -117,6 +157,23 @@ local Window = Rayfield:CreateWindow({
     Name = "🎮DarkGames Hub Premium🎮",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/DarkGames-Hub-Premium/refs/heads/main/DarkGames%20Hub%20Premium"))()
+    end,
+ })
+
+ local Button = HomeTab:CreateButton({
+    Name = "Reset Character (Respawn)",
+    Callback = function()
+        game:GetService("Players").LocalPlayer.Character:BreakJoints()
+    end,
+ })
+
+ local Button = HomeTab:CreateButton({
+    Name = "Enable Reset Character",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet("https://pastebin.com/raw/mW24cfXm", true))()
     end,
  })
 
@@ -512,6 +569,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/The-telligenc
     Name = "Nameless Admin",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/FilteringEnabled/NamelessAdmin/main/Source"))()
+    end,
+ })
+
+ local Button = AdminTab:CreateButton({
+    Name = "Proton Admin",
+    Callback = function()
+        loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
     end,
  })
 
@@ -5130,6 +5194,13 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
  })
 
  local Button = HubsTab:CreateButton({
+    Name = "System Broken",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/H20CalibreYT/SystemBroken/main/script"))()
+    end,
+ })
+
+ local Button = HubsTab:CreateButton({
     Name = "RoChips Hub",
     Callback = function()
         if "you wanna use rochips universal" then
@@ -7556,7 +7627,14 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "Fe Troll Gui",
+    Name = "FE Troll Gui",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/FWwdST5Y"))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "FE Spam Sound (Works if RSE False)",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/FWwdST5Y"))()
     end,
