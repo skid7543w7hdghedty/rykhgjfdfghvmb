@@ -1,12 +1,6 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
-local Window = Rayfield:CreateWindow({
-    
-    Name = "🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️",
-    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
-    LoadingTitle = "✅The BEST Premium Hub, Enjoy✅",
-    LoadingSubtitle = "💀by Who? D A R K💀",
-    Theme = "{
+local Window = Rayfield:{
     TextColor = Color3.fromRGB(240, 240, 240),
 
     Background = Color3.fromRGB(25, 25, 25),
@@ -46,7 +40,13 @@ local Window = Rayfield:CreateWindow({
     InputBackground = Color3.fromRGB(30, 30, 30),
     InputStroke = Color3.fromRGB(65, 65, 65),
     PlaceholderColor = Color3.fromRGB(178, 178, 178)
-}",
+}({
+    
+    Name = "🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️",
+    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+    LoadingTitle = "✅The BEST Premium Hub, Enjoy✅",
+    LoadingSubtitle = "💀by Who? D A R K💀",
+    Theme = "Amber Glow", -- Check https://docs.sirius.menu/rayfield/configuration/themes
  
     DisableRayfieldPrompts = false,
     DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
