@@ -534,6 +534,13 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/The-telligenc
  })
 
  local Button = AdminTab:CreateButton({
+    Name = "RoChips Admin",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/new/refs/heads/main/cmd.lua"))()
+    end,
+ })
+
+ local Button = AdminTab:CreateButton({
     Name = "Proton Admin",
     Callback = function()
         loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/5e6e6cc1bb32fd926764d064e2c60a3b.lua"))()
@@ -3755,16 +3762,16 @@ intro:Destroy()
  })
 
  local Button = AdminTab:CreateButton({
-    Name = "RoChips Admin",
+    Name = "DarkDexV3",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/new/refs/heads/main/cmd.lua"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Cynacol/Dark-Dex-V3/refs/heads/main/Dark%20Dex%20V3.txt"))()
     end,
  })
 
  local Button = AdminTab:CreateButton({
-    Name = "DarkDexV3",
+    Name = "DarkDexV5",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Babyhamsta/RBLX_Scripts/main/Universal/BypassedDarkDexV3.lua", true))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/dyyll/Dex-V5-leak/refs/heads/main/Dex%20V5.lua"))()
     end,
  })
 
@@ -5139,6 +5146,14 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
         loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/DarkGames-Hub-Premium/refs/heads/main/DarkGames%20Hub%20Premium"))()
     end,
  })
+
+ local Button = HubsTab:CreateButton({
+    Name = "RoChips Panel V0.0.4beta",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/load/refs/heads/main/rcloader"))()
+    end,
+ })
+
 
  local Button = HubsTab:CreateButton({
     Name = "Wisl'i Universal Project",
@@ -7575,6 +7590,13 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
     Name = "Russian bypasser (lelele)",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/08QdLK2Y"))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "NPC Control",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty38.lua"))()
     end,
  })
 
