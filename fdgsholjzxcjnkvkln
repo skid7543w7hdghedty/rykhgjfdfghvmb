@@ -3775,6 +3775,20 @@ intro:Destroy()
     end,
  })
 
+ local Button = AdminTab:CreateButton({
+    Name = "Btools F3X",
+    Callback = function()
+        loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
+    end,
+ })
+
+ local Button = AdminTab:CreateButton({
+    Name = "Btools",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/FBKJTUyw"))("t.me/AvtorScripts");
+    end,
+ })
+
  local TestTab = Window:CreateTab("✅⏺️⛔Executor Tests", 4483362458) -- Title, Image
  local TestSection = TestTab:CreateSection("Tests")
 
@@ -7580,13 +7594,6 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "Bypasser (New chat version)",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastefy.app/9HWD0emH/raw"))()
-    end,
- })
-
- local Button = TrollTab:CreateButton({
     Name = "Russian bypasser (lelele)",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/08QdLK2Y"))()
@@ -7601,11 +7608,9 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "Chat Art (Many Colors)",
+    Name = "Chat Art (2 colors)",
     Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/s5rtS3DB"))(
-     'More scripts: t.me/arceusxscripts'
-)
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-chat-draw-script-17621"))()
     end,
  })
 
@@ -7962,9 +7967,16 @@ end
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "Black Hole Parts",
+    Name = "Super Ring Parts V3 (No message)",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/BingusWR/BLACKHOLDSCRIPT/refs/heads/main/BLACK%20HOLD%20SCRIPT"))()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-SUPER-RING-PARTS-V3-WITH-NO-MESSAGE-26385"))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "Ritual Parts (No message, slow)",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastejustit.com/raw/fe-ritual-parts-by-avtor-scripts"))("T.me/AvtorScripts")
     end,
  })
 
@@ -9483,6 +9495,20 @@ toggleAnimation()
  })
 
  local Button = TrollTab:CreateButton({
+    Name = "FE Seraphic Blade",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastefy.app/59mJGQGe/raw"))("T.me/AvtorScripts")
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "FE Jojo",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/6EDNqA7f"))()("T.me/AvtorScripts")
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
     Name = "FE Fighter",
     Callback = function()
         loadstring(game:HttpGet("https://pastefy.app/wxVAgZpT/raw"))("T.me/AvtorScripts")
@@ -9753,6 +9779,13 @@ workspace.FallenPartsDestroyHeight = -500
  local ServersSection = ServerTab:CreateSection("Script")
 
  local Button = ServerTab:CreateButton({
+    Name = "Jason Spy (Remote Spy)",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/q6kUz9vv"))()("T.me/AvtorScripts")
+    end,
+ })
+
+ local Button = ServerTab:CreateButton({
     Name = "Anti-Cheat Bypass 1",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Next1x/Nextix./main/UniversalACBypass"))()
@@ -9989,6 +10022,20 @@ game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.
 
  local ToolsTab = Window:CreateTab("🔨Tools", 4483362458) -- Title, Image
  local ToolsSection = ToolsTab:CreateSection("Tools")
+
+ local Button = ToolsTab:CreateButton({
+    Name = "Btools F3X",
+    Callback = function()
+        loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
+    end,
+ })
+
+ local Button = ToolsTab:CreateButton({
+    Name = "Btools",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/FBKJTUyw"))("t.me/AvtorScripts");
+    end,
+ })
 
  local Button = ToolsTab:CreateButton({
     Name = "Flashlight",
@@ -12672,6 +12719,13 @@ end)
  })
 
  local Button = OthersTab:CreateButton({
+    Name = "Universal Copy Place (No scripts)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Sashkandro/RobloxUniversalGameCopier/main/Script",true))()
+    end,
+ })
+
+ local Button = OthersTab:CreateButton({
     Name = "Universal Copy Place ID",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/hassanxzayn-lua/NEOXHUBMAIN/refs/heads/main/placeidcopier"))()
@@ -12686,9 +12740,23 @@ end)
  })
 
  local Button = OthersTab:CreateButton({
+    Name = "Universal Copy Avatar 2",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Luarmor123/YHUB-Community/refs/heads/main/Avatar_Copier.lua"))()
+    end,
+ })
+
+ local Button = OthersTab:CreateButton({
     Name = "Fake Lag",
     Callback = function()
         loadstring(game:HttpGet('https://pastebin.com/raw/VM3b0Thg'))("T.me/AvtorScripts")
+    end,
+ })
+
+ local Button = OthersTab:CreateButton({
+    Name = "Fake Lag 2",
+    Callback = function()
+        loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()Ioad("e31001d620989ef8a93b49b26b89e57f")
     end,
  })
 
@@ -12714,7 +12782,19 @@ end)
  })
 
  local GamesTab = Window:CreateTab("🎮Games Scripts", 4483362458) -- Title, Image
- local GamesSection = GamesTab:CreateSection("👹Horror Tycoon (Teleports: Map, Bases and others)")
+ local PrisonSection = GamesTab:CreateSection("👮Prison Life")
+ 
+ local Button = GamesTab:CreateButton({
+    Name = "Prizz Life V0.8.1",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet('https://raw.githubusercontent.com/elliexmln/PrizzLife/main/pladmin.lua'))()
+    end,
+ })
+
+ local TycoonSection = GamesTab:CreateSection("👹Horror Tycoon (Teleports: Map, Bases and others)")
 
  local Button = GamesTab:CreateButton({
     Name = "Safe Area",
