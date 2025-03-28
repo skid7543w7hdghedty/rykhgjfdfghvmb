@@ -13123,17 +13123,3 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/elliexmln/PrizzLife/m
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-21, 3, 22)
     end,
  })
-
-print("🔄Loading...30%c")
-wait (2)
-print("🔄Loading...50%🔄")
-wait(2)
-print("🔄Loading...75%🔄")
-wait (3)
-print("🔄Loading...90%🔄")
-wait (1)
-print("🔄Loading...100%🔄")
-print("👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑 ✅Loaded Successfully, Enjoy✅")
-print("Made 💀by Who? D A R K💀")
-print("For making sure you're using full power of script, use Swift executor")
-print("getswift.com OR discord.gg/getswift (99% UNC; 98% sUNC)")
