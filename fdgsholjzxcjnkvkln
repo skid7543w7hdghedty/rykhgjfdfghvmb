@@ -13123,7 +13123,3 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/elliexmln/PrizzLife/m
         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-21, 3, 22)
     end,
  })
-
-print("👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑 ✅Loaded Succesfully✅")
-print("Made 💀by Who? D A R K💀")
-print("For a better experience while using the script, make sure you are using getswift.com (98% sUNC, best free exploit)")
