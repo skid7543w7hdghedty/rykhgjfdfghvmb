@@ -1,3 +1,17 @@
+print("🔄Loading...30%🔄")
+wait (2)
+print("🔄Loading...50%🔄")
+wait(2)
+print("🔄Loading...75%🔄")
+wait (3)
+print("🔄Loading...90%🔄")
+wait (1)
+print("🔄Loading...100%🔄")
+print("👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑 ✅Loaded Successfully, Enjoy✅")
+print("Made 💀by Who? D A R K💀")
+print("For making sure you're using full power of script, use Swift executor")
+print("getswift.com OR discord.gg/getswift (99% UNC; 98% sUNC)")
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
@@ -12947,179 +12961,8 @@ end)
  local Button = GamesTab:CreateButton({
     Name = "Prizz Life V0.8.1",
     Callback = function()
-        --[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
-loadstring(game:HttpGet('https://raw.githubusercontent.com/elliexmln/PrizzLife/main/pladmin.lua'))()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/elliexmln/PrizzLife/main/pladmin.lua'))()
     end,
- })
+})
 
- local TycoonSection = GamesTab:CreateSection("👹Horror Tycoon (Teleports: Map, Bases and others)")
-
- local Button = GamesTab:CreateButton({
-    Name = "Safe Area",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(436, 3, 447)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "ADS BillBoard",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-0, 25, 2)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Tree (Purple and Red Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(98, 59, 345)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Tree (Violet and Pink Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-279, 59, 214)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Tree (Green and Blue Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-307, 59, -241)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Tree (Orange And Yellow Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(99, 59, -334)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Stone (Red and Violet Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-113, 16, 337)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Stone (Pink and Green Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-375, 16, -11)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Stone (Blue and Orange Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-112, 16, -344)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Stone (Yellow and Dark Blue Bases)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(290, 16, -206)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Slenderman Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(236, 49, 79)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Jeff The Killer Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(222, 49, -75)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Jason Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-137, 49, 201)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Baldi Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-223, 49, -79)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Chucky Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-229, 49, 72)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Granny Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(147, 49, 200)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Bendy Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1, 49, -241)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Killer Clown Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(3, 49, 244)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "John Doe Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(136, 49, -196)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Hello Neighbour Base Roof",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-138, 49, -197)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Spawner 1 (Next to Baldi Base)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-21, 3, -15)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Spawner 2 (Next to Granny Base)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(22, 3, 22)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Spawner 3 (Next to John Doe Base)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(22, 3, -16)
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Spawner 4 (Next to Jason Base)",
-    Callback = function()
-        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-21, 3, 22)
-    end,
- })
+local NaturalSection = GamesTab:CreateSection("Natural Disaster Survival")
