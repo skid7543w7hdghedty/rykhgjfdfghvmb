@@ -1,8 +1,12 @@
+print("👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑 ✅Loaded Succesfully✅")
+print("Made 💀by Who? D A R K💀")
+print("For a better experience while using the script, make sure you are using getswift.com (98% sUNC, best free exploit)")
+
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
     
-    Name = "🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️",
+    Name = "👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑",
     Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
     LoadingTitle = "✅The BEST Premium Hub, Enjoy✅",
     LoadingSubtitle = "💀by Who? D A R K💀",
@@ -31,7 +35,7 @@ local Window = Rayfield:CreateWindow({
        FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
        SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
        GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-       Key = {"DarkSideHubPremiumOnTop"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+       Key = {"ProjectDarkSideHubPremium"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }
  })
 
@@ -5210,6 +5214,13 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
  })
 
  local Button = HubsTab:CreateButton({
+    Name = "Animations Script",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Emircxy/Lear/refs/heads/main/LearAnimation"))()
+    end,
+ })
+
+ local Button = HubsTab:CreateButton({
     Name = "Ghost Hub",
     Callback = function()
         loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/main/GhostHub'))()
@@ -7228,10 +7239,100 @@ end)
  })
 
  local Button = CombatTab:CreateButton({
+    Name = "Universal Crosshair",
+    Callback = function()
+        settings = {
+            color = Color3.fromRGB(255, 0, 0),    -- The color of the crosshair, takes any Color3.
+            thickness = 2,                              -- The thickness of the crosshair in pixel, takes any full number.
+            length = 7,                                 -- The length of each side in pixel, takes any full number.
+            opacity = 1,                                -- The opacity of the crosshair, takes any number, 1 is fully visible and 0 is invisible.
+         x_offset = 0,                               -- The x offset of the crosshair, takes any positive or negative number.
+         y_offset = 0,                               -- The y offset of the crosshair, takes any positive or negative number.
+         
+            recenter = true                             -- Automatically recenter the crosshair if your window was resized, this is an option in case it causes lag for anyone which I highly doubt, if it does for you, then please stop using your Microwave for Roblox.
+        }
+        
+        local cam = workspace.CurrentCamera or workspace:FindFirstChildOfClass("Camera")
+        
+        getgenv().crosshair_x = getgenv().crosshair_x or {}
+        getgenv().crosshair_y = getgenv().crosshair_y or {}
+        
+        local function draw(a1, a2)
+            local obj = Drawing.new(a1)
+            for i, v in pairs(a2) do 
+                obj[i] = v
+            end
+            return obj
+        end
+        
+        if getgenv().crosshair_x ~= nil or getgenv().crosshair_x ~= {} then
+            if getgenv().crosshair_x["Line"] then
+                getgenv().crosshair_x["Line"]:Remove()
+            end
+            
+            if getgenv().crosshair_x["Connection"] then
+                getgenv().crosshair_x["Connection"]:Disconnect()
+            end
+            getgenv().crosshair_x = {}
+        end
+        
+        if getgenv().crosshair_y ~= nil or getgenv().crosshair_y ~= {} then
+            if getgenv().crosshair_y["Line"] then
+                getgenv().crosshair_y["Line"]:Remove()
+            end
+        
+            if getgenv().crosshair_y["Connection"] then
+                getgenv().crosshair_y["Connection"]:Disconnect()
+            end
+            
+            getgenv().crosshair_y = {}
+        end
+        
+        getgenv().crosshair_x["Line"] = draw("Line", {
+            To = Vector2.new(((cam.ViewportSize.x / 2) - settings.x_offset) - settings.length, (cam.ViewportSize.y / 2) - settings.y_offset),
+            From = Vector2.new(((cam.ViewportSize.x / 2) - settings.x_offset) + settings.length, (cam.ViewportSize.y / 2) - settings.y_offset),
+            Thickness = settings.thickness,
+            Color = settings.color,
+            Transparency = settings.opacity,
+            Visible = true
+        })
+        
+        getgenv().crosshair_y["Line"] = draw("Line", {
+            To = Vector2.new((cam.ViewportSize.x / 2) - settings.x_offset, ((cam.ViewportSize.y / 2) - settings.y_offset) - settings.length),
+            From = Vector2.new((cam.ViewportSize.x / 2) - settings.x_offset, ((cam.ViewportSize.y / 2) - settings.y_offset) + settings.length),
+            Thickness = settings.thickness,
+            Color = settings.color,
+            Transparency = settings.opacity,
+            Visible = true
+        })
+        
+        if settings.recenter then
+            getgenv().crosshair_x["Connection"] = cam:GetPropertyChangedSignal("ViewportSize"):Connect(function()
+                getgenv().crosshair_x["Line"]["To"] = Vector2.new(((cam.ViewportSize.x / 2) - settings.x_offset) - settings.length, (cam.ViewportSize.y / 2) - settings.y_offset)
+                getgenv().crosshair_x["Line"]["From"] = Vector2.new(((cam.ViewportSize.x / 2) - settings.x_offset) + settings.length, (cam.ViewportSize.y / 2) - settings.y_offset)
+            end)
+        
+            getgenv().crosshair_y["Connection"] = cam:GetPropertyChangedSignal("ViewportSize"):Connect(function()
+                getgenv().crosshair_y["Line"]["To"] = Vector2.new((cam.ViewportSize.x / 2) - settings.x_offset, ((cam.ViewportSize.y / 2) - settings.y_offset) - settings.length)
+                getgenv().crosshair_y["Line"]["From"] = Vector2.new((cam.ViewportSize.x / 2) - settings.x_offset, ((cam.ViewportSize.y / 2) - settings.y_offset) + settings.length)
+            end)
+        end
+        
+    end,
+ })
+
+ local Button = CombatTab:CreateButton({
     Name = "Universal Hitbox Changer",
     Callback = function()
         loadstring(game:HttpGet("https://scriptblox.com/raw/Murderers-VS-Sheriffs-Duels-The-Hunt-11336"))()
 
+    end,
+ })
+
+ local Button = CombatTab:CreateButton({
+    Name = "Stats (FPS & Ping show)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/warprbx/Night/refs/heads/main/src/uilib.lua"))("t.me/arceusxscripts")
     end,
  })
 
@@ -7523,6 +7624,13 @@ end)
  })
 
  local Button = CombatTab:CreateButton({
+    Name = "BHop (Half Life)",
+    Callback = function()
+        loadstring(game:HttpGet(('https://pastebin.com/raw/mFfRnPsw'),true))()
+    end,
+ })
+
+ local Button = CombatTab:CreateButton({
     Name = "Lag Switch",
     Callback = function()
         loadstring(game:HttpGet(('https://raw.githubusercontent.com/0Ben1/fe/main/Protected%20-%202023-05-28T225112.055.lua.txt'),true))()
@@ -7594,6 +7702,20 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
  })
 
  local Button = TrollTab:CreateButton({
+    Name = "AEYA Bypasser 2.0 (Russian words supported)",
+    Callback = function()
+        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\49\48\50\56\50\55\50\53\50\53\50\55\47\67\104\97\116\98\121\112\97\115\115\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\65\69\89\65\98\121\112\97\115\115\101\114\46\116\120\116\34\41\41\40\41\10")()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "Gaze Bypass (Russian words supported)",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/Gazer-Ha/Reimagined/refs/heads/main/Gaze%20bypass'))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
     Name = "Russian bypasser (lelele)",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/08QdLK2Y"))()
@@ -7604,6 +7726,13 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
     Name = "NPC Control",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/randomstring0/Qwerty/refs/heads/main/qwerty38.lua"))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "Chat Art (Many colors)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Avtor1zaTion/ChatDrawByAvtorScripts/refs/heads/main/ByAvtor1zaTion"))()
     end,
  })
 
@@ -7956,6 +8085,13 @@ end
     Name = "Touch Fling",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/rfKaavP3"))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "BlackHole Tool",
+    Callback = function()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/sovetskii-shashlik/eaeb8a759ac9f84212f4dd86da352d98/raw/5fd3320f6c8ae46a0963c03f30e595915aa14aa5/Shashlik-blackhole.lua"))()
     end,
  })
 
@@ -9505,6 +9641,13 @@ toggleAnimation()
     Name = "FE Jojo",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/6EDNqA7f"))()("T.me/AvtorScripts")
+    end,z
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "FE Gojo",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/HKt1BE6G"))("T.me/AvtorScripts")
     end,
  })
 
@@ -10034,6 +10177,13 @@ game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, server.
     Name = "Btools",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/FBKJTUyw"))("t.me/AvtorScripts");
+    end,
+ })
+
+ local Button = ToolsTab:CreateButton({
+    Name = "BlackHole Tool",
+    Callback = function()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/sovetskii-shashlik/eaeb8a759ac9f84212f4dd86da352d98/raw/5fd3320f6c8ae46a0963c03f30e595915aa14aa5/Shashlik-blackhole.lua"))()
     end,
  })
 
@@ -11052,23 +11202,30 @@ end
 
 
  local Button = ToolsTab:CreateButton({
-    Name = "SpeedCoil",
+    Name = "Speed Coil",
     Callback = function()
         _G.speedcoil=game:GetObjects("rbxassetid://99119158")[1];_G.speedcoil.Parent=game.Players.LocalPlayer.Backpack;_G.speedcoil.Equipped:Connect(function() game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=50;local v5=Instance.new("Sound");local v6="99173388";v5.Parent=game.Workspace;v5.SoundId="rbxassetid://"   .. v6 ;v5.Playing=true;v5.Looped=false;v5.Volume=1;end);_G.speedcoil.Unequipped:Connect(function() game.Players.LocalPlayer.Character.Humanoid.WalkSpeed=16;end);
     end,
  })
 
  local Button = ToolsTab:CreateButton({
-    Name = "GravityCoil",
+    Name = "Gravity Coil",
     Callback = function()
         _G.gravitycoil=game:GetObjects("rbxassetid://16688968")[1];_G.gravitycoil.Parent=game.Players.LocalPlayer.Backpack;_G.gravitycoil.Equipped:Connect(function() game.workspace.Gravity=35;local v15=Instance.new("Sound");local v16="16619553";v15.Parent=game.Workspace;v15.SoundId="rbxassetid://"   .. v16 ;v15.Playing=true;v15.Looped=false;v15.Volume=1;end);_G.gravitycoil.Unequipped:Connect(function() game.workspace.Gravity=196.2;end);
     end,
  })
 
  local Button = ToolsTab:CreateButton({
-    Name = "SuperCoil",
+    Name = "Super Coil",
     Callback = function()
         _G.Super_Coil=game:GetObjects("rbxassetid://14917011895")[1];_G.Super_Coil.Parent=game.Players.LocalPlayer.Backpack;_G.Super_Coil.Equipped:Connect(function() game.workspace.Gravity=50;game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed=120;game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower=120;local v27=Instance.new("Sound");local v28="99173388";v27.Parent=game.Workspace;v27.SoundId="rbxassetid://"   .. v28 ;v27.Playing=true;v27.Looped=false;v27.Volume=1;end);_G.Super_Coil.Unequipped:Connect(function() game.workspace.Gravity=200;game:GetService("Players").LocalPlayer.Character.Humanoid.WalkSpeed=16;game:GetService("Players").LocalPlayer.Character.Humanoid.JumpPower=50;end);
+    end,
+ })
+
+ local Button = ToolsTab:CreateButton({
+    Name = "Fusion Coil",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Ahma174/Tool/refs/heads/main/Fusion%20Coil"))()\
     end,
  })
 
@@ -12757,6 +12914,13 @@ end)
     Name = "Fake Lag 2",
     Callback = function()
         loadstring(game:HttpGet("https://ghostplayer352.github.io/Authorization/"))()Ioad("e31001d620989ef8a93b49b26b89e57f")
+    end,
+ })
+
+ local Button = OthersTab:CreateButton({
+    Name = "Best Keyboard (Mobile Script)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/VirtualKeyboard.lua"))();
     end,
  })
 
