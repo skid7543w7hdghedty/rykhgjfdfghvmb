@@ -1,11 +1,7 @@
 print("🔄Loading...30%🔄")
-wait (2)
 print("🔄Loading...50%🔄")
-wait(2)
 print("🔄Loading...75%🔄")
-wait (3)
 print("🔄Loading...90%🔄")
-wait (1)
 print("🔄Loading...100%🔄")
 print("👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑 ✅Loaded Successfully, Enjoy✅")
 print("Made 💀by Who? D A R K💀")
@@ -48,6 +44,12 @@ local Window = Rayfield:CreateWindow({
        Key = {"ProjectDarkSideHubPremium"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
     }
  })
+
+ local InformationTab = Window:CreateTab("🧾📌Information (SOON)", 4483362458) -- Title, Image
+ local InformationSection = InformationTab:CreateSection("Information")
+
+ local PremiumTab = Window:CreateTab("👑💎Premium Features (SOON)", 4483362458) -- Title, Image
+ local PremiumSection = PremiumTab:CreateSection("Premium")
 
  local HomeTab = Window:CreateTab("🏡Home", 4483362458) -- Title, Image
  local HomeSection = HomeTab:CreateSection("Main")
@@ -7342,14 +7344,185 @@ end)
  local Button = CombatTab:CreateButton({
     Name = "Stats (FPS & Ping show)",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/warprbx/Night/refs/heads/main/src/uilib.lua"))("t.me/arceusxscripts")
+        -- FPS and Ping Checker Script (Improved UI with Movable Frame)
+
+-- Create a ScreenGui to display FPS and Ping
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "PerformanceGui"
+ScreenGui.ResetOnSpawn = false -- Keep the UI persistent across respawns
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+-- Frame for FPS and Ping display
+local displayFrame = Instance.new("Frame")
+displayFrame.Size = UDim2.new(0, 250, 0, 100)
+displayFrame.Position = UDim2.new(0, 10, 0, 10)
+displayFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+displayFrame.BackgroundTransparency = 0.4
+displayFrame.BorderSizePixel = 0
+displayFrame.Active = true -- Make the frame active for input events
+displayFrame.Draggable = true -- Enable draggable frame
+displayFrame.Parent = ScreenGui
+
+-- FPS Label
+local fpsLabel = Instance.new("TextLabel")
+fpsLabel.Size = UDim2.new(1, -20, 0, 40)
+fpsLabel.Position = UDim2.new(0, 10, 0, 10)
+fpsLabel.TextColor3 = Color3.new(1, 1, 1)
+fpsLabel.TextStrokeTransparency = 0.7
+fpsLabel.TextSize = 24
+fpsLabel.Font = Enum.Font.SourceSansBold
+fpsLabel.TextXAlignment = Enum.TextXAlignment.Left
+fpsLabel.BackgroundTransparency = 1
+fpsLabel.Text = "FPS: Loading..."
+fpsLabel.Parent = displayFrame
+
+-- Ping Label
+local pingLabel = Instance.new("TextLabel")
+pingLabel.Size = UDim2.new(1, -20, 0, 40)
+pingLabel.Position = UDim2.new(0, 10, 0, 50)
+pingLabel.TextColor3 = Color3.new(1, 1, 1)
+pingLabel.TextStrokeTransparency = 0.7
+pingLabel.TextSize = 24
+pingLabel.Font = Enum.Font.SourceSansBold
+pingLabel.TextXAlignment = Enum.TextXAlignment.Left
+pingLabel.BackgroundTransparency = 1
+pingLabel.Text = "Ping: Loading..."
+pingLabel.Parent = displayFrame
+
+-- FPS Checker
+local fps = 0
+local lastTime = tick()
+
+game:GetService("RunService").RenderStepped:Connect(function()
+    fps = math.floor(1 / (tick() - lastTime))
+    lastTime = tick()
+    fpsLabel.Text = "FPS: " .. tostring(fps)
+end)
+
+-- Ping Checker
+local function getPing()
+    local player = game.Players.LocalPlayer
+    local ping = player:GetNetworkPing() * 1000 -- Convert to milliseconds
+    return math.floor(ping)
+end
+
+game:GetService("RunService").Stepped:Connect(function()
+    local ping = getPing()
+    pingLabel.Text = "Ping: " .. tostring(ping) .. " ms"
+end)
+
+-- Optional: Auto-adjust label colors based on performance
+game:GetService("RunService").Stepped:Connect(function()
+    if fps < 30 then
+        fpsLabel.TextColor3 = Color3.new(1, 0, 0) -- Red for low FPS
+    else
+        fpsLabel.TextColor3 = Color3.new(0, 1, 0) -- Green for good FPS
+    end
+
+    if getPing() > 200 then
+        pingLabel.TextColor3 = Color3.new(1, 0, 0) -- Red for high ping
+    else
+        pingLabel.TextColor3 = Color3.new(0, 1, 0) -- Green for good ping
+    end
+end)
+
+-- Optional: Saving frame position locally
+local function savePosition()
+    local pos = displayFrame.Position
+    -- Save the position to a datastore or local storage (optional implementation)
+end
+
+-- Saving the position when dragging stops
+displayFrame.MouseLeave:Connect(savePosition)
+displayFrame.InputEnded:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        savePosition()
+    end
+end)
+loadstring(game:HttpGet("https://pastebin.com/raw/KiSYpej6",true))()
+    end,
+ })
+
+ local Button = CombatTab:CreateButton({
+    Name = "Stats 2.0 (FPS & Ping show)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Aucor-Limited/rho/refs/heads/main/state.lua"))("t.me/AvtorScripts")
     end,
  })
 
  local Button = CombatTab:CreateButton({
     Name = "Increase Fps (Anti-Lag)",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/warprbx/Night/refs/heads/main/src/uilib.lua"))("t.me/arceusxscripts")
+        local ToDisable = {
+            Textures = true,
+            VisualEffects = true,
+            Parts = true,
+            Particles = true,
+            Sky = true
+        }
+        
+        local ToEnable = {
+            FullBright = false
+        }
+        
+        local Stuff = {}
+        
+        for _, v in next, game:GetDescendants() do
+            if ToDisable.Parts then
+                if v:IsA("Part") or v:IsA("Union") or v:IsA("BasePart") then
+                    v.Material = Enum.Material.SmoothPlastic
+                    table.insert(Stuff, 1, v)
+                end
+            end
+            
+            if ToDisable.Particles then
+                if v:IsA("ParticleEmitter") or v:IsA("Smoke") or v:IsA("Explosion") or v:IsA("Sparkles") or v:IsA("Fire") then
+                    v.Enabled = false
+                    table.insert(Stuff, 1, v)
+                end
+            end
+            
+            if ToDisable.VisualEffects then
+                if v:IsA("BloomEffect") or v:IsA("BlurEffect") or v:IsA("DepthOfFieldEffect") or v:IsA("SunRaysEffect") then
+                    v.Enabled = false
+                    table.insert(Stuff, 1, v)
+                end
+            end
+            
+            if ToDisable.Textures then
+                if v:IsA("Decal") or v:IsA("Texture") then
+                    v.Texture = ""
+                    table.insert(Stuff, 1, v)
+                end
+            end
+            
+            if ToDisable.Sky then
+                if v:IsA("Sky") then
+                    v.Parent = nil
+                    table.insert(Stuff, 1, v)
+                end
+            end
+        end
+        
+        game:GetService("TestService"):Message("Effects Disabler Script : Successfully disabled "..#Stuff.." assets / effects. Settings :")
+        
+        for i, v in next, ToDisable do
+            print(tostring(i)..": "..tostring(v))
+        end
+        
+        if ToEnable.FullBright then
+            local Lighting = game:GetService("Lighting")
+            
+            Lighting.FogColor = Color3.fromRGB(255, 255, 255)
+            Lighting.FogEnd = math.huge
+            Lighting.FogStart = math.huge
+            Lighting.Ambient = Color3.fromRGB(255, 255, 255)
+            Lighting.Brightness = 5
+            Lighting.ColorShift_Bottom = Color3.fromRGB(255, 255, 255)
+            Lighting.ColorShift_Top = Color3.fromRGB(255, 255, 255)
+            Lighting.OutdoorAmbient = Color3.fromRGB(255, 255, 255)
+            Lighting.Outlines = true
+        end
     end,
  })
 
@@ -7714,7 +7887,23 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
  local Button = TrollTab:CreateButton({
     Name = "AEYA Bypasser 2.0 (Russian words supported)",
     Callback = function()
-        loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\49\48\50\56\50\55\50\53\50\53\50\55\47\67\104\97\116\98\121\112\97\115\115\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\65\69\89\65\98\121\112\97\115\115\101\114\46\116\120\116\34\41\41\40\41\10")()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+-- take that loss Skidders HAHA EZ
+loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\114\97\119\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\49\48\50\56\50\55\50\53\50\53\50\55\47\67\104\97\116\98\121\112\97\115\115\47\114\101\102\115\47\104\101\97\100\115\47\109\97\105\110\47\65\69\89\65\98\121\112\97\115\115\101\114\46\116\120\116\34\41\41\40\41\10")()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "Ayra Bypasser (With Anti-Chat Logger)",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/twig76/ayra/refs/heads/main/ayras",true))()
+
+--set language to Қазақ Тілі for this to work
     end,
  })
 
@@ -8095,6 +8284,81 @@ end
     Name = "Touch Fling",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/rfKaavP3"))()
+    end,
+ })
+
+ local Button = TrollTab:CreateButton({
+    Name = "BlackHole (Press E)",
+    Callback = function()
+        local UserInputService = game:GetService("UserInputService")
+local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
+local Folder = Instance.new("Folder", game:GetService("Workspace"))
+local Part = Instance.new("Part", Folder)
+local Attachment1 = Instance.new("Attachment", Part)
+Part.Anchored = true
+Part.CanCollide = false
+Part.Transparency = 1
+local Updated = Mouse.Hit + Vector3.new(0, 5, 0)
+local NetworkAccess = coroutine.create(function()
+    settings().Physics.AllowSleep = false
+    while game:GetService("RunService").RenderStepped:Wait() do
+        for _, Players in next, game:GetService("Players"):GetPlayers() do
+            if Players ~= game:GetService("Players").LocalPlayer then
+                Players.MaximumSimulationRadius = 0 
+                sethiddenproperty(Players, "SimulationRadius", 0) 
+            end 
+        end
+        game:GetService("Players").LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)
+        setsimulationradius(math.huge) 
+    end 
+end) 
+coroutine.resume(NetworkAccess)
+local function ForcePart(v)
+    if v:IsA("Part") and v.Anchored == false and v.Parent:FindFirstChild("Humanoid") == nil and v.Parent:FindFirstChild("Head") == nil and v.Name ~= "Handle" then
+        Mouse.TargetFilter = v
+        for _, x in next, v:GetChildren() do
+            if x:IsA("BodyAngularVelocity") or x:IsA("BodyForce") or x:IsA("BodyGyro") or x:IsA("BodyPosition") or x:IsA("BodyThrust") or x:IsA("BodyVelocity") or x:IsA("RocketPropulsion") then
+                x:Destroy()
+            end
+        end
+        if v:FindFirstChild("Attachment") then
+            v:FindFirstChild("Attachment"):Destroy()
+        end
+        if v:FindFirstChild("AlignPosition") then
+            v:FindFirstChild("AlignPosition"):Destroy()
+        end
+        if v:FindFirstChild("Torque") then
+            v:FindFirstChild("Torque"):Destroy()
+        end
+        v.CanCollide = false
+        local Torque = Instance.new("Torque", v)
+        Torque.Torque = Vector3.new(100000, 100000, 100000)
+        local AlignPosition = Instance.new("AlignPosition", v)
+        local Attachment2 = Instance.new("Attachment", v)
+        Torque.Attachment0 = Attachment2
+        AlignPosition.MaxForce = 9999999999999999
+        AlignPosition.MaxVelocity = math.huge
+        AlignPosition.Responsiveness = 200
+        AlignPosition.Attachment0 = Attachment2 
+        AlignPosition.Attachment1 = Attachment1
+    end
+end
+for _, v in next, game:GetService("Workspace"):GetDescendants() do
+    ForcePart(v)
+end
+game:GetService("Workspace").DescendantAdded:Connect(function(v)
+    ForcePart(v)
+end)
+UserInputService.InputBegan:Connect(function(Key, Chat)
+    if Key.KeyCode == Enum.KeyCode.E and not Chat then
+       Updated = Mouse.Hit + Vector3.new(0, 5, 0)
+    end
+end)
+spawn(function()
+    while game:GetService("RunService").RenderStepped:Wait() do
+        Attachment1.WorldCFrame = Updated
+    end
+end)
     end,
  })
 
@@ -9634,13 +9898,6 @@ toggleAnimation()
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "FE KJ Fight",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/5KnPXUEm"))("T.me/AvtorScripts")
-    end,
- })
-
- local Button = TrollTab:CreateButton({
     Name = "FE Seraphic Blade",
     Callback = function()
         loadstring(game:HttpGet("https://pastefy.app/59mJGQGe/raw"))("T.me/AvtorScripts")
@@ -9648,23 +9905,9 @@ toggleAnimation()
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "FE Jojo",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/6EDNqA7f"))()("T.me/AvtorScripts")
-    end,z
- })
-
- local Button = TrollTab:CreateButton({
     Name = "FE Gojo",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/HKt1BE6G"))("T.me/AvtorScripts")
-    end,
- })
-
- local Button = TrollTab:CreateButton({
-    Name = "FE Fighter",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastefy.app/wxVAgZpT/raw"))("T.me/AvtorScripts")
     end,
  })
 
@@ -9939,6 +10182,23 @@ workspace.FallenPartsDestroyHeight = -500
  })
 
  local Button = ServerTab:CreateButton({
+    Name = "Octo Spy (Remote Spy)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/InfernusScripts/Octo-Spy/refs/heads/main/Main.lua", true))()
+    end,
+ })
+ 
+ local Button = ServerTab:CreateButton({
+    Name = "Anti-Chat Logger (Anti-Ban for Messages)",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua", true))()
+    end,
+ })
+
+ local Button = ServerTab:CreateButton({
     Name = "Anti-Cheat Bypass 1",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Next1x/Nextix./main/UniversalACBypass"))()
@@ -10067,13 +10327,6 @@ X = hookmetamethod(game, "__namecall", function(self, ...)
    end
    return X(self, ...)
 end)
-    end,
- })
-
- local Button = ServerTab:CreateButton({
-    Name = "Anti-Chat Logger (Anti-Ban for Messages)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AnthonyIsntHere/anthonysrepository/main/scripts/AntiChatLogger.lua", true))()
     end,
  })
 
@@ -12886,13 +13139,6 @@ end)
  })
 
  local Button = OthersTab:CreateButton({
-    Name = "Universal Copy Place (No scripts)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Sashkandro/RobloxUniversalGameCopier/main/Script",true))()
-    end,
- })
-
- local Button = OthersTab:CreateButton({
     Name = "Universal Copy Place ID",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/hassanxzayn-lua/NEOXHUBMAIN/refs/heads/main/placeidcopier"))()
@@ -12961,8 +13207,8 @@ end)
  local Button = GamesTab:CreateButton({
     Name = "Prizz Life V0.8.1",
     Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/elliexmln/PrizzLife/main/pladmin.lua'))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EnesXVC/Games-Scripts/main/Prison-Life-Prizz-Life"))()
     end,
 })
 
-local NaturalSection = GamesTab:CreateSection("Natural Disaster Survival")
+local NaturalSection = GamesTab:CreateSection("🌪️⛈️🌊Natural Disaster Survival (SOON)")
