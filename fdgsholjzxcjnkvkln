@@ -5,8 +5,8 @@ print("🔄Loading...90%🔄")
 print("🔄Loading...100%🔄")
 print("👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑 ✅Loaded Successfully, Enjoy✅")
 print("Made 💀by Who? D A R K💀")
-print("For making sure you're using full power of script, use Swift executor")
-print("getswift.com OR discord.gg/getswift (99% UNC; 98% sUNC)")
+print("💪For making sure you're using full power of script, use Swift executor💪")
+print("💥getswift.com OR discord.gg/getswift (99% UNC; 98% sUNC)💥")
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
@@ -45,11 +45,11 @@ local Window = Rayfield:CreateWindow({
     }
  })
 
- local InformationTab = Window:CreateTab("🧾📌Information (SOON)", 4483362458) -- Title, Image
- local InformationSection = InformationTab:CreateSection("Information")
+ local InformationTab = Window:CreateTab("🧾📌Information", 4483362458) -- Title, Image
+ local InformationSection = InformationTab:CreateSection("SOON...")
 
- local PremiumTab = Window:CreateTab("👑💎Premium Features (SOON)", 4483362458) -- Title, Image
- local PremiumSection = PremiumTab:CreateSection("Premium")
+ local PremiumTab = Window:CreateTab("👑💎Premium Features", 4483362458) -- Title, Image
+ local PremiumSection = PremiumTab:CreateSection("SOON...")
 
  local HomeTab = Window:CreateTab("🏡Home", 4483362458) -- Title, Image
  local HomeSection = HomeTab:CreateSection("Main")
@@ -13212,3 +13212,4 @@ end)
 })
 
 local NaturalSection = GamesTab:CreateSection("🌪️⛈️🌊Natural Disaster Survival (SOON)")
+local MurderSection = GamesTab:CreateSection("🔪🕵️‍♂️Murder Mystery 2 (SOON)")
