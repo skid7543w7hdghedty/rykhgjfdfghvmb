@@ -48,7 +48,6 @@ local Window = Rayfield:CreateWindow({
  })
 
  local InformationTab = Window:CreateTab("🧾📌Information", 4483362458) -- Title, Image
- local InformationSection = InformationTab:CreateSection("Status Info")
  local InformationSection = InformationTab:CreateSection("🟢|Working")
  local InformationSection = InformationTab:CreateSection("🔵|Release Soon")
  local InformationSection = InformationTab:CreateSection("🟣|Issues (Working, problems with website, outdated version, Dll|API|Keysystem errors)")
