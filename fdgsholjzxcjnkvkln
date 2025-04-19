@@ -46,10 +46,82 @@ local Window = Rayfield:CreateWindow({
  })
 
  local InformationTab = Window:CreateTab("🧾📌Information", 4483362458) -- Title, Image
- local InformationSection = InformationTab:CreateSection("SOON...")
+ local InformationSection = InformationTab:CreateSection("Status Info")
+ local InformationSection = InformationTab:CreateSection("🟢|Working")
+ local InformationSection = InformationTab:CreateSection("🔵|Release Soon")
+ local InformationSection = InformationTab:CreateSection("🟣|Issues")
+ local InformationSection = InformationTab:CreateSection("🟡|Updating")
+ local InformationSection = InformationTab:CreateSection("🟠|Down")
+ local InformationSection = InformationTab:CreateSection("🔴|Fully Down")
+ local InformationSection = InformationTab:CreateSection("⚫|Discontinued")
+ local InformationSection = InformationTab:CreateSection("⭕|Exit Scam")
 
  local PremiumTab = Window:CreateTab("👑💎Premium Features", 4483362458) -- Title, Image
- local PremiumSection = PremiumTab:CreateSection("SOON...")
+ local PremiumSection = PremiumTab:CreateSection("Private Anti-Aim (Enable all scripts)")
+
+ local Button = PremiumTab:CreateButton({
+    Name = "Private Anti-Aim Function 1",
+    Callback = function()
+        local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+while true do
+	task.wait(0.1) 
+	
+	local randomAngle = math.rad(0, 360) 
+	
+	player.Character:SetPrimaryPartCFrame(CFrame.new(player.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(randomAngle), 0))
+end
+    end,
+ })
+
+ local Button = PremiumTab:CreateButton({
+    Name = "Private Anti-Aim Function 2",
+    Callback = function()
+        local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+while true do
+	task.wait(0.1) 
+	
+	local randomAngle = math.rad(0, 180) 
+	
+	player.Character:SetPrimaryPartCFrame(CFrame.new(player.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(randomAngle), 0))
+end
+    end,
+ })
+
+ local Button = PremiumTab:CreateButton({
+    Name = "Private Anti-Aim Function 3",
+    Callback = function()
+        local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+while true do
+	task.wait(0.1) 
+	
+	local randomAngle = math.random(0, 360) 
+	
+	player.Character:SetPrimaryPartCFrame(CFrame.new(player.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(randomAngle), 0))
+end
+    end,
+ })
+
+ local Button = PremiumTab:CreateButton({
+    Name = "Private Anti-Aim Function 4",
+    Callback = function()
+        local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+while true do
+	task.wait(0.1) 
+	
+	local randomAngle = math.random(0, 180) 
+	
+	player.Character:SetPrimaryPartCFrame(CFrame.new(player.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(randomAngle), 0))
+end
+    end,
+ })
 
  local HomeTab = Window:CreateTab("🏡Home", 4483362458) -- Title, Image
  local HomeSection = HomeTab:CreateSection("Main")
@@ -5226,6 +5298,13 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
  })
 
  local Button = HubsTab:CreateButton({
+    Name = "AFEM Emotions",
+    Callback = function()
+        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-AFEM-14048"))()
+    end,
+ })
+
+ local Button = HubsTab:CreateButton({
     Name = "Animations Script",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Emircxy/Lear/refs/heads/main/LearAnimation"))()
@@ -7809,7 +7888,7 @@ end)
  local Button = CombatTab:CreateButton({
     Name = "BHop (Half Life)",
     Callback = function()
-        loadstring(game:HttpGet(('https://pastebin.com/raw/mFfRnPsw'),true))()
+        loadstring(game:HttpGet("https://pastebin.com/raw/DVu212ie"))("T.me/AvtorScripts")
     end,
  })
 
@@ -13211,5 +13290,39 @@ end)
     end,
 })
 
+local MurderSection = GamesTab:CreateSection("🔪🕵️‍♂️Murder Mystery 2")
+
+local Button = GamesTab:CreateButton({
+    Name = "Eclipse Hub (Best Rage, Legit)",
+    Callback = function()
+        getgenv().mainKey = "nil"
+
+local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or (syn and syn.request),assert,tostring,"https\58//api.eclipsehub.xyz/auth";c(a and b,"Executor not Supported")a(b({Url=e.."\?\107e\121\61"..d(mainKey),Headers={["User-Agent"]="Eclipse"}}).Body)()
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "Overdrive H (Best Semi-Rage, Legit, Keysystem)",
+    Callback = function()
+        ODH_KEY = "" -- if you are a free user, enter your key here to auto validate.
+
+loadstring(game:HttpGet("https://api.overdrivehub.xyz/v1/auth"))()
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "Kicia Hook (Keysystem)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/kiciahook/kiciahook/refs/heads/main/loader.lua"))()
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "X-Hub",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Au0yX/Community/main/XhubMM2"))()
+    end,
+ })
+
 local NaturalSection = GamesTab:CreateSection("🌪️⛈️🌊Natural Disaster Survival (SOON)")
-local MurderSection = GamesTab:CreateSection("🔪🕵️‍♂️Murder Mystery 2 (SOON)")
+local LuckySection = GamesTab:CreateSection("🍀🗡️Lucky Block Battlegrounds (SOON)")
