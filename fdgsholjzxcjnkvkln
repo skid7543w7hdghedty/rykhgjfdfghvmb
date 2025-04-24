@@ -47,17 +47,6 @@ local Window = Rayfield:CreateWindow({
     }
  })
 
- local InformationTab = Window:CreateTab("🧾📌Information", 4483362458) -- Title, Image
- local InformationSection = InformationTab:CreateSection("🟢|Working")
- local InformationSection = InformationTab:CreateSection("🔵|Release Soon")
- local InformationSection = InformationTab:CreateSection("🟣|Issues (Working; problems with website, keysys, Dll|API")
- local InformationSection = InformationTab:CreateSection("🟡|Updating (Probably down, not working)")
- local InformationSection = InformationTab:CreateSection("🟠|Down (Probably because of issues)")
- local InformationSection = InformationTab:CreateSection("🔴|Fully Down (Probably updating)")
- local InformationSection = InformationTab:CreateSection("⚫|Discontinued")
- local InformationSection = InformationTab:CreateSection("⭕|Exit Scam")
- local InformationSection = InformationTab:CreateSection("❓|Unknown")
-
  local PremiumTab = Window:CreateTab("👑💎Premium Features", 4483362458) -- Title, Image
  local PremiumSection = PremiumTab:CreateSection("Private Anti-Aim (Enable all scripts)")
 
@@ -7300,32 +7289,175 @@ end)
  })
 
  local Button = CombatTab:CreateButton({
-    Name = "Npc Esp (No Autorefresh)",
+    Name = "Npc Esp",
     Callback = function()
-        for _, item in pairs(workspace:GetDescendants()) do
-            if item:IsA("Humanoid") then
-                local highlight = Instance.new("Highlight")
-                local parent = item.Parent
-                if parent then
-                    local plr = game.Players:GetPlayerFromCharacter(parent)
-                    if not plr then
-                        highlight.Parent = parent
-                    end
+        local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local Workspace = game:GetService("Workspace")
+
+-- Function to create ESP for an NPC
+local function createESP(entity)
+    if entity ~= LocalPlayer.Character and entity then
+        local humanoid = entity:FindFirstChildOfClass("Humanoid")
+        local rootPart = entity:FindFirstChild("HumanoidRootPart") or entity:FindFirstChild("Torso")
+        
+        if humanoid and rootPart then
+            -- Create Highlight
+            local highlight = Instance.new("Highlight")
+            highlight.Name = "ESP"
+            highlight.FillColor = Color3.fromRGB(255, 0, 0)
+            highlight.OutlineColor = Color3.fromRGB(0, 0, 255)
+            highlight.FillTransparency = 0.7
+            highlight.OutlineTransparency = 0
+            highlight.Adornee = entity
+            highlight.DepthMode = Enum.HighlightDepthMode.AlwaysOnTop
+            highlight.Parent = entity
+
+            -- Create BillboardGui for health bar
+            local healthBarGui = Instance.new("BillboardGui")
+            healthBarGui.Name = "HealthBar"
+            healthBarGui.Adornee = rootPart
+            healthBarGui.Size = UDim2.new(0, 10, 0, 45)
+            healthBarGui.StudsOffset = Vector3.new(-3, 0, 0) -- Position to the left
+            healthBarGui.AlwaysOnTop = true
+            healthBarGui.Parent = entity
+
+            -- Health Bar Background
+            local barBackground = Instance.new("Frame")
+            barBackground.Size = UDim2.new(1, 0, 1, 0)
+            barBackground.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+            barBackground.BorderSizePixel = 1
+            barBackground.Parent = healthBarGui
+
+            -- Health Bar
+            local healthBar = Instance.new("Frame")
+            healthBar.Name = "HealthBarFill"
+            healthBar.Size = UDim2.new(1, 0, 1, 0)
+            healthBar.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+            healthBar.BorderSizePixel = 0
+            healthBar.Parent = barBackground
+
+            -- Create BillboardGui for health and distance (below NPC)
+            local billboard = Instance.new("BillboardGui")
+            billboard.Name = "ESPInfo"
+            billboard.Adornee = rootPart
+            billboard.Size = UDim2.new(0, 100, 0, 50)
+            billboard.StudsOffset = Vector3.new(0, -7, 0) -- Position below NPC
+            billboard.AlwaysOnTop = true
+            billboard.Parent = entity
+
+            -- Health Label
+            local healthLabel = Instance.new("TextLabel")
+            healthLabel.Name = "Health"
+            healthLabel.Size = UDim2.new(1, 0, 0.5, 0)
+            healthLabel.BackgroundTransparency = 1
+            healthLabel.TextColor3 = Color3.fromRGB(0, 255, 0)
+            healthLabel.TextStrokeTransparency = 0
+            healthLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+            healthLabel.TextSize = 14
+            healthLabel.Font = Enum.Font.SourceSansBold
+            healthLabel.Parent = billboard
+
+            -- Distance Label
+            local distanceLabel = Instance.new("TextLabel")
+            distanceLabel.Name = "Distance"
+            distanceLabel.Size = UDim2.new(1, 0, 0.5, 0)
+            distanceLabel.Position = UDim2.new(0, 0, 0.55, 0)
+            distanceLabel.BackgroundTransparency = 1
+            distanceLabel.TextColor3 = Color3.fromRGB(255, 255, 0)
+            distanceLabel.TextStrokeTransparency = 0
+            distanceLabel.TextStrokeColor3 = Color3.fromRGB(0, 0, 0)
+            distanceLabel.TextSize = 14
+            distanceLabel.Font = Enum.Font.SourceSansBold
+            distanceLabel.Parent = billboard
+
+            -- Update health and distance
+            local connection
+            connection = RunService.RenderStepped:Connect(function()
+                if not (entity and entity.Parent and humanoid and rootPart and LocalPlayer.Character and LocalPlayer.Character.Parent) then
+                    connection:Disconnect()
+                    return
                 end
+
+                -- Update Health Label
+                healthLabel.Text = string.format("Health: %d/%d", humanoid.Health, humanoid.MaxHealth)
+
+                -- Update Health Bar
+                local healthFraction = humanoid.Health / humanoid.MaxHealth
+                healthBar.Size = UDim2.new(1, 0, healthFraction, 0)
+                healthBar.Position = UDim2.new(0, 0, 1 - healthFraction, 0)
+
+                -- Update Distance
+                local localRoot = LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("HumanoidRootPart")
+                if localRoot then
+                    local distance = (rootPart.Position - localRoot.Position).Magnitude
+                    distanceLabel.Text = string.format("Distance: %.1f studs", distance)
+                else
+                    distanceLabel.Text = "Distance: N/A"
+                end
+            end)
+        end
+    end
+end
+
+-- Function to remove ESP from an entity
+local function removeESP(entity)
+    if entity then
+        local highlight = entity:FindFirstChild("ESP")
+        local billboard = entity:FindFirstChild("ESPInfo")
+        local healthBarGui = entity:FindFirstChild("HealthBar")
+        if highlight then
+            highlight:Destroy()
+        end
+        if billboard then
+            billboard:Destroy()
+        end
+        if healthBarGui then
+            healthBarGui:Destroy()
+        end
+    end
+end
+
+-- Function to find and apply ESP to NPCs
+local function updateNPCs()
+    for _, model in ipairs(Workspace:GetDescendants()) do
+        if model:IsA("Model") and model ~= LocalPlayer.Character then
+            local humanoid = model:FindFirstChildOfClass("Humanoid")
+            local rootPart = model:FindFirstChild("HumanoidRootPart") or model:FindFirstChild("Torso")
+            if humanoid and rootPart and not Players:GetPlayerFromCharacter(model) then
+                removeESP(model)
+                createESP(model)
             end
         end
+    end
+end
+
+-- Monitor workspace for new NPCs
+Workspace.DescendantAdded:Connect(function(descendant)
+    if descendant:IsA("Model") then
+        local humanoid = descendant:FindFirstChildOfClass("Humanoid")
+        local rootPart = descendant:FindFirstChild("HumanoidRootPart") or descendant:FindFirstChild("Torso")
+        if humanoid and rootPart and not Players:GetPlayerFromCharacter(descendant) then
+            wait(0.1)
+            createESP(descendant)
+        end
+    end
+end)
+
+-- Initial ESP setup for NPCs
+updateNPCs()
+
+-- Periodically update ESP for NPCs
+while true do
+    updateNPCs()
+    wait(1)
+end
     end,
  })
 
  local Button = CombatTab:CreateButton({
     Name = "Universal Aimbot",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xxtan31/Equinox-Hub/main/aimbot.lua", true))("t.me/arceusxscripts")
-    end,
- })
-
- local Button = CombatTab:CreateButton({
-    Name = "Universal Script",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Xxtan31/Equinox-Hub/main/aimbot.lua", true))("t.me/arceusxscripts")
     end,
@@ -7845,7 +7977,7 @@ end)
  local Button = CombatTab:CreateButton({
     Name = "Legit Fake WallHop",
     Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/lyraEz/lol/refs/heads/main/loaders/Shizukii%20wallhop.lua'))(“T.me/AvtorScripts”)
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/lyraEz/lol/refs/heads/main/loaders/Shizukii%20wallhop.lua'))
     end,
  })
 
@@ -13554,20 +13686,6 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
         ODH_KEY = "" -- if you are a free user, enter your key here to auto validate.
 
 loadstring(game:HttpGet("https://api.overdrivehub.xyz/v1/auth"))()
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "Kicia Hook (Keysystem)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/kiciahook/kiciahook/refs/heads/main/loader.lua"))()
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "X-Hub",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Au0yX/Community/main/XhubMM2"))()
     end,
  })
 
