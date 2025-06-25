@@ -6,17 +6,17 @@ print("🔄Loading...100%🔄")
 print("👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑 ✅Loaded Successfully, Enjoy✅")
 print("Made 💀by Who? D A R K💀")
 print("💪For making sure you're using full power of script, use Swift executor💪")
-print("💥getswift.com OR discord.gg/getswift (99% UNC; 97% sUNC)💥")
+print("💥getswift.com OR discord.gg/getswift (100% UNC; 100% sUNC)💥")
 
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
     
     Name = "👑🏴‍☠️DarkSide Hub Premium V1.0🏴‍☠️👑",
-    Icon = 0, -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
+    Icon = "crown", -- Icon in Topbar. Can use Lucide Icons (string) or Roblox Image (number). 0 to use no icon (default).
     LoadingTitle = "✅The BEST Premium Hub, Enjoy✅",
     LoadingSubtitle = "💀by Who? D A R K💀",
-    Theme = "Amber Glow", -- Check https://docs.sirius.menu/rayfield/configuration/themes
+    Theme = "DarkBlue", -- Check https://docs.sirius.menu/rayfield/configuration/themes
  
     DisableRayfieldPrompts = false,
     DisableBuildWarnings = false, -- Prevents Rayfield from warning when the script has a version mismatch with the interface
@@ -45,7 +45,7 @@ local Window = Rayfield:CreateWindow({
     }
  })
 
- local PremiumTab = Window:CreateTab("👑💎Premium Features", 4483362458) -- Title, Image
+ local PremiumTab = Window:CreateTab("👑💎Premium Features", "gem") -- Title, Image
  local PremiumSection = PremiumTab:CreateSection("Private Anti-Aim (Enable all scripts)")
 
  local Button = PremiumTab:CreateButton({
@@ -69,7 +69,205 @@ local Window = Rayfield:CreateWindow({
     end,
  })
 
- local HomeTab = Window:CreateTab("🏡Home", 4483362458) -- Title, Image
+ local Button = PremiumTab:CreateButton({
+    Name = "Keystroke show",
+    Callback = function()
+        
+-- Services
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local MarketplaceService = game:GetService("MarketplaceService")
+local CoreGui = game:GetService("CoreGui")
+
+-- UI Elements
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "KeystrokeUI"
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.Parent = CoreGui
+
+local Frame = Instance.new("Frame")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BackgroundTransparency = 0.4
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.77, 0, 0.15, 0)
+Frame.Size = UDim2.new(0, 170, 0, 170)
+Frame.Active = true  -- for dragging
+
+local UICorner = Instance.new("UICorner")
+UICorner.Parent = Frame
+
+local UIStroke = Instance.new("UIStroke")
+UIStroke.Parent = Frame
+UIStroke.Thickness = 3
+UIStroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+
+-- Animate Neon RGB Stroke
+local function animateStroke()
+	local hue = 0
+	while true do
+		UIStroke.Color = Color3.fromHSV(hue, 1, 1)
+		hue = (hue + 0.01) % 1
+		task.wait(0.05)
+	end
+end
+task.spawn(animateStroke)
+
+-- Game Name Detection
+local gameNameLabel = Instance.new("TextLabel")
+gameNameLabel.Parent = Frame
+gameNameLabel.Size = UDim2.new(1, 0, 0, 20)
+gameNameLabel.Position = UDim2.new(0, 0, -0.15, 0)
+gameNameLabel.BackgroundTransparency = 1
+gameNameLabel.Font = Enum.Font.SourceSans
+gameNameLabel.TextScaled = true
+gameNameLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+gameNameLabel.Text = "Loading game name..."
+
+task.spawn(function()
+	local success, info = pcall(function()
+		return MarketplaceService:GetProductInfo(game.PlaceId)
+	end)
+	if success and info then
+		gameNameLabel.Text = info.Name
+	else
+		gameNameLabel.Text = "Unknown Game"
+	end
+end)
+
+-- Key Definitions
+local keys = {
+	{Name = "W", KeyCode = Enum.KeyCode.W, Position = UDim2.new(0.364, 0, 0.04, 0)},
+	{Name = "A", KeyCode = Enum.KeyCode.A, Position = UDim2.new(0.035, 0, 0.364, 0)},
+	{Name = "S", KeyCode = Enum.KeyCode.S, Position = UDim2.new(0.364, 0, 0.364, 0)},
+	{Name = "D", KeyCode = Enum.KeyCode.D, Position = UDim2.new(0.688, 0, 0.364, 0)},
+	{Name = "LMB", InputType = Enum.UserInputType.MouseButton1, Position = UDim2.new(0.035, 0, 0.664, 0), Size = UDim2.new(0, 78, 0, 25)},
+	{Name = "RMB", InputType = Enum.UserInputType.MouseButton2, Position = UDim2.new(0.494, 0, 0.664, 0), Size = UDim2.new(0, 78, 0, 25)},
+	{Name = "Spacebar", KeyCode = Enum.KeyCode.Space, Position = UDim2.new(0.035, 0, 0.852, 0), Size = UDim2.new(0, 156, 0, 25)}
+}
+
+-- Key Buttons
+local buttons = {}
+for _, keyData in pairs(keys) do
+	local keyButton = Instance.new("TextButton")
+	local buttonUICorner = Instance.new("UICorner")
+	
+	keyButton.Name = keyData.Name
+	keyButton.Parent = Frame
+	keyButton.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+	keyButton.BackgroundTransparency = 0.5
+	keyButton.BorderSizePixel = 0
+	keyButton.Position = keyData.Position
+	keyButton.Size = keyData.Size or UDim2.new(0, 45, 0, 45)
+	keyButton.Font = Enum.Font.GothamBold
+	keyButton.Text = keyData.Name
+	keyButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+	keyButton.TextSize = 20
+	keyButton.TextWrapped = true
+	keyButton.AutoButtonColor = false
+	
+	buttonUICorner.Parent = keyButton
+	buttons[keyData.Name] = keyButton
+end
+
+-- Long Press / Long Click Detection
+local longPressThreshold = 0.01
+local keyPressTimes = {}
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	for _, keyData in pairs(keys) do
+		if (keyData.KeyCode and input.KeyCode == keyData.KeyCode) or 
+		   (keyData.InputType and input.UserInputType == keyData.InputType) then
+			local button = buttons[keyData.Name]
+			if button then
+				keyPressTimes[keyData.Name] = tick()
+				task.spawn(function()
+					task.wait(longPressThreshold)
+					if keyPressTimes[keyData.Name] then
+						TweenService:Create(button, TweenInfo.new(0.1), {BackgroundColor3 = Color3.fromRGB(0, 255, 255)}):Play()
+					end
+				end)
+			end
+		end
+	end
+end)
+
+UserInputService.InputEnded:Connect(function(input, gameProcessed)
+	if gameProcessed then return end
+	for _, keyData in pairs(keys) do
+		if (keyData.KeyCode and input.KeyCode == keyData.KeyCode) or 
+		   (keyData.InputType and input.UserInputType == keyData.InputType) then
+			local button = buttons[keyData.Name]
+			if button and keyPressTimes[keyData.Name] then
+				local pressDuration = tick() - keyPressTimes[keyData.Name]
+				keyPressTimes[keyData.Name] = nil
+				if pressDuration < longPressThreshold then
+					TweenService:Create(button, TweenInfo.new(0.1), {BackgroundColor3 = Color3.fromRGB(255, 255, 255)}):Play()
+					task.wait(0.1)
+					TweenService:Create(button, TweenInfo.new(0.1), {BackgroundColor3 = Color3.fromRGB(50, 50, 50)}):Play()
+				else
+					TweenService:Create(button, TweenInfo.new(0.1), {BackgroundColor3 = Color3.fromRGB(50, 50, 50)}):Play()
+				end
+			end
+		end
+	end
+end)
+
+-- Draggify GUI Functionality for Main Frame
+local dragging, dragStart, startPos
+Frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		dragStart = input.Position
+		startPos = Frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then
+				dragging = false
+			end
+		end)
+	end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+	if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+		local delta = input.Position - dragStart
+		Frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+end)
+    end,
+ })
+
+ local Button = PremiumTab:CreateButton({
+    Name = "Panda Auth Bypass",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+--[[
+
+  Recently ive seen alot of scripts using this shitty auth called 'Panda Auth', its been pretty popular on youtube so I decided to make a patch for it.
+  Run the script you want to bypass, then run this, this will hook the auth function so when you press the submit key button it will always work, no need for a valid key.
+  
+  Nice auth 👍
+
+]]
+
+for i, v in getgc(true) do
+	if typeof(v) == "function" then
+		local info = getinfo(v)
+		if string.find(info.name, "ValidateKey") then
+			replaceclosure(v, function(...)
+				return true
+			end)
+		end
+	end
+end
+    end,
+ })
+
+ local HomeTab = Window:CreateTab("🏡Home", "cpu") -- Title, Image
  local HomeSection = HomeTab:CreateSection("Main")
  
  Rayfield:Notify({
@@ -149,13 +347,6 @@ local Window = Rayfield:CreateWindow({
  })
 
  local Button = HomeTab:CreateButton({
-    Name = "🎮DarkGames Hub Premium🎮",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/DarkGames-Hub-Premium/refs/heads/main/DarkGames%20Hub%20Premium"))()
-    end,
- })
-
- local Button = HomeTab:CreateButton({
     Name = "Reset Character (Respawn)",
     Callback = function()
         game:GetService("Players").LocalPlayer.Character:BreakJoints()
@@ -169,6 +360,90 @@ local Window = Rayfield:CreateWindow({
 	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
 ]]
 loadstring(game:HttpGet("https://pastebin.com/raw/mW24cfXm", true))()
+    end,
+ })
+
+ local Button = HomeTab:CreateButton({
+    Name = "Respawn on the same place",
+    Callback = function()
+        game:GetService("Players").LocalPlayer.Character:BreakJoints()
+function respawn(plr)
+    local char = plr.Character
+    if not char then return end
+    local hrp = char:FindFirstChild("HumanoidRootPart")
+    if not hrp then return end
+
+    local ogpos = hrp.CFrame
+    local ogpos2 = workspace.CurrentCamera.CFrame
+    local faggot = gethiddenproperty(workspace, "RejectCharacterDeletions") ~= Enum.RejectCharacterDeletions.Disabled
+
+    if faggot and replicatesignal then
+        replicatesignal(plr.ConnectDiedSignalBackend)
+        task.wait(game:GetService("Players").RespawnTime - 0.1)
+        replicatesignal(plr.Kill)
+    else
+        local hum = char:FindFirstChildWhichIsA("Humanoid")
+        if hum then hum:ChangeState(Enum.HumanoidStateType.Dead) end
+        char:ClearAllChildren()
+
+        local newgen = Instance.new("Model")
+        newgen.Parent = workspace
+        plr.Character = newgen
+        task.wait()
+        plr.Character = plr.Character
+        newgen:Destroy()
+    end
+
+    task.spawn(function()
+        plr.CharacterAdded:Wait():WaitForChild("HumanoidRootPart").CFrame = ogpos
+        workspace.CurrentCamera.CFrame = ogpos2
+    end)
+end
+
+respawn(game:GetService("Players").LocalPlayer)
+    end,
+ })
+
+ local Button = HomeTab:CreateButton({
+    Name = "Instant Respawn",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+function respawn(plr)
+    local char = plr.Character
+    if not char then return end
+    local hrp = char:FindFirstChild("HumanoidRootPart")
+    if not hrp then return end
+
+    local ogpos = hrp.CFrame
+    local ogpos2 = workspace.CurrentCamera.CFrame
+    local faggot = gethiddenproperty(workspace, "RejectCharacterDeletions") ~= Enum.RejectCharacterDeletions.Disabled
+
+    if faggot and replicatesignal then
+        replicatesignal(plr.ConnectDiedSignalBackend)
+        task.wait(game:GetService("Players").RespawnTime - 0.1)
+        replicatesignal(plr.Kill)
+    else
+        local hum = char:FindFirstChildWhichIsA("Humanoid")
+        if hum then hum:ChangeState(Enum.HumanoidStateType.Dead) end
+        char:ClearAllChildren()
+
+        local newgen = Instance.new("Model")
+        newgen.Parent = workspace
+        plr.Character = newgen
+        task.wait()
+        plr.Character = plr.Character
+        newgen:Destroy()
+    end
+
+    task.spawn(function()
+        plr.CharacterAdded:Wait():WaitForChild("HumanoidRootPart").CFrame = ogpos
+        workspace.CurrentCamera.CFrame = ogpos2
+    end)
+end
+
+respawn(game:GetService("Players").LocalPlayer)
     end,
  })
 
@@ -561,7 +836,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/Hosvile/The-telligenc
     end,
  })
  
- local AdminTab = Window:CreateTab("🩸Admin Scripts", 4483362458) -- Title, Image
+ local AdminTab = Window:CreateTab("🩸Admin Scripts", "ban") -- Title, Image
  local AdminSection = AdminTab:CreateSection("Admin")
 
  local Button = AdminTab:CreateButton({
@@ -3830,12 +4105,12 @@ intro:Destroy()
  })
 
  local Button = AdminTab:CreateButton({
-    Name = "Dex Explorer (Infinite Yield)",
+    Name = "Dex Explorer (From Infinite Yield)",
     Callback = function()
         --[[
 	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
 ]]
-loadstring(game:HttpGet("https://raw.githubusercontent.com/SirMiloRBLX2/scripts/refs/heads/main/DexMobile.lua"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/infyiff/backup/main/dex.lua"))()
     end,
  })
 
@@ -3867,7 +4142,7 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/SirMiloRBLX2/scripts/
     end,
  })
 
- local TestTab = Window:CreateTab("✅⏺️⛔Executor Tests", 4483362458) -- Title, Image
+ local TestTab = Window:CreateTab("✅⏺️⛔Executor Tests", "flask-conical") -- Title, Image
  local TestSection = TestTab:CreateSection("Tests")
 
  local Button = TestTab:CreateButton({
@@ -5214,28 +5489,64 @@ print("⏺️ " .. undefined .. " vulnerabilities not tested")
  })
 
  local Button = TestTab:CreateButton({
+    Name = "Level Test (HIdentity)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/vvult/HIdentity/refs/heads/main/HIdentity", true))()
+    end,
+ })
+
+ local Button = TestTab:CreateButton({
+    Name = "HookFunction Test",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+
+
+
+--[[
+makes sure your exploit is good (hookfunction)
+]]--
+
+local function FHUIEVNIVIROINSIHATENIGGERSOHIOSKIBIDI123()
+    if not hookfunction then return false,"hookfunction is not defined" end
+    local original=function()return"original"end
+    local success,result=pcall(function()
+    hookfunction(original,function()return"hooked"end)end)
+    if success then
+    local status,output=pcall(original)
+    if status and output=="hooked"then return true,"hookfunction is available and working"
+    else return false,"hookfunction is not working "end
+    else return false,"error: "..tostring(result)end
+    end
+    local available,STINKYASSFARTSINMYBOOTYHOLERIGHTTHEFUCKNOWBROHOLLYSHITTTTAHHHHIMFUCKINGCUMMINGBROPLEASE=FHUIEVNIVIROINSIHATENIGGERSOHIOSKIBIDI123()
+    print(STINKYASSFARTSINMYBOOTYHOLERIGHTTHEFUCKNOWBROHOLLYSHITTTTAHHHHIMFUCKINGCUMMINGBROPLEASE)
+    
+    end,
+ })
+
+
+ local Button = TestTab:CreateButton({
     Name = "Vulnerability Patcher (Lower UNC)",
     Callback = function()
         loadstring(game:HttpGet"https://raw.githubusercontent.com/HtB1526/ArceusX_Scripts/main/Scripts/fluxusvulnpatcherv2.lua")("https://t.me/arceusxscripts")
     end,
  })
 
- local HubsTab = Window:CreateTab("📋Hubs", 4483362458) -- Title, Image
- local HubsSection = HubsTab:CreateSection("Hubs")
-
- local Button = HubsTab:CreateButton({
-    Name = "Eclipse Hub (Best Universal)",
+ local Button = TestTab:CreateButton({
+    Name = "RoTotal (blocking even normal scripts)",
     Callback = function()
-        getgenv().mainKey = "nil"
-
-local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or (syn and syn.request),assert,tostring,"https\58//api.eclipsehub.xyz/auth";c(a and b,"Executor not Supported")a(b({Url=e.."\?\107e\121\61"..d(mainKey),Headers={["User-Agent"]="Eclipse"}}).Body)()
+        loadstring(game:HttpGet"https://raw.githubusercontent.com/HtB1526/ArceusX_Scripts/main/Scripts/fluxusvulnpatcherv2.lua")("https://t.me/arceusxscripts")
     end,
  })
 
+ local HubsTab = Window:CreateTab("📋Hubs", "menu") -- Title, Image
+ local HubsSection = HubsTab:CreateSection("Hubs")
+
  local Button = HubsTab:CreateButton({
-    Name = "🎮DarkGames Hub Premium🎮",
+    Name = "Server Hub",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/DarkGames-Hub-Premium/refs/heads/main/DarkGames%20Hub%20Premium"))()
+        loadstring(game:HttpGet('https://sirius.menu/script'))()
     end,
  })
 
@@ -5277,6 +5588,16 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
             z_c(lonely:HttpGet(z_z..""..z_x))()
             return ("This will load in about 2 - 30 seconds" or "according to your device and executor")
           end
+    end,
+ })
+
+ local Button = HubsTab:CreateButton({
+    Name = "Emotions Hub",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Gazer-Ha/Free-emote/refs/heads/main/fe%20emote.txt", true))()
     end,
  })
 
@@ -5334,7 +5655,7 @@ loadstring("\45\45\32\71\117\105\32\116\111\32\76\117\97\13\10\45\45\32\86\101\1
     end,
  })
 
- local CombatTab = Window:CreateTab("⚔️Combat", 4483362458) -- Title, Image
+ local CombatTab = Window:CreateTab("⚔️Combat", "swords") -- Title, Image
  local CombatSection = CombatTab:CreateSection("Combats")
 
  local Button = CombatTab:CreateButton({
@@ -7302,6 +7623,402 @@ end)
  })
 
  local Button = CombatTab:CreateButton({
+    Name = "Friends Checker",
+    Callback = function()
+        
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local HttpService = game:GetService("HttpService")
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "FriendViewer"
+ScreenGui.Parent = game:GetService("CoreGui")
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local MainFrame = Instance.new("Frame")
+MainFrame.Name = "MainFrame"
+MainFrame.Size = UDim2.new(0, 350, 0, 500)
+MainFrame.Position = UDim2.new(0.5, -175, 0.5, -250)
+MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
+MainFrame.BorderSizePixel = 0
+MainFrame.ClipsDescendants = true
+MainFrame.Parent = ScreenGui
+local Corner = Instance.new("UICorner")
+Corner.CornerRadius = UDim.new(0, 8)
+Corner.Parent = MainFrame
+local Shadow = Instance.new("ImageLabel")
+Shadow.Name = "Shadow"
+Shadow.Size = UDim2.new(1, 10, 1, 10)
+Shadow.Position = UDim2.new(0, -5, 0, -5)
+Shadow.BackgroundTransparency = 1
+Shadow.Image = "rbxassetid://1316045217"
+Shadow.ImageColor3 = Color3.new(0, 0, 0)
+Shadow.ImageTransparency = 0.8
+Shadow.ScaleType = Enum.ScaleType.Slice
+Shadow.SliceCenter = Rect.new(10, 10, 118, 118)
+Shadow.ZIndex = -1
+Shadow.Parent = MainFrame
+
+local Title = Instance.new("TextLabel")
+Title.Name = "Title"
+Title.Size = UDim2.new(1, 0, 0, 45)
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+Title.BorderSizePixel = 0
+Title.Text = "FRIEND CHECKER"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 16
+Title.Parent = MainFrame
+
+local TitleCorner = Instance.new("UICorner")
+TitleCorner.CornerRadius = UDim.new(0, 8)
+TitleCorner.Parent = Title
+
+local CloseButton = Instance.new("ImageButton")
+CloseButton.Name = "CloseButton"
+CloseButton.Size = UDim2.new(0, 25, 0, 25)
+CloseButton.Position = UDim2.new(1, -30, 0.5, -12)
+CloseButton.AnchorPoint = Vector2.new(0, 0.5)
+CloseButton.BackgroundTransparency = 1
+CloseButton.Image = "rbxassetid://3926305904"
+CloseButton.ImageRectOffset = Vector2.new(284, 4)
+CloseButton.ImageRectSize = Vector2.new(24, 24)
+CloseButton.Parent = Title
+
+CloseButton.MouseEnter:Connect(function()
+    TweenService:Create(CloseButton, TweenInfo.new(0.15), {
+        ImageColor3 = Color3.fromRGB(255, 80, 80)
+    }):Play()
+end)
+
+CloseButton.MouseLeave:Connect(function()
+    TweenService:Create(CloseButton, TweenInfo.new(0.15), {
+        ImageColor3 = Color3.fromRGB(255, 255, 255)
+    }):Play()
+end)
+
+local PlayerList = Instance.new("ScrollingFrame")
+PlayerList.Name = "PlayerList"
+PlayerList.Size = UDim2.new(1, -20, 1, -60)
+PlayerList.Position = UDim2.new(0, 10, 0, 50)
+PlayerList.BackgroundTransparency = 1
+PlayerList.ScrollBarThickness = 2
+PlayerList.ScrollBarImageColor3 = Color3.fromRGB(100, 100, 100)
+PlayerList.Parent = MainFrame
+
+local layout = Instance.new("UIListLayout")
+layout.Padding = UDim.new(0, 5)
+layout.SortOrder = Enum.SortOrder.LayoutOrder
+layout.Parent = PlayerList
+layout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(function()
+	PlayerList.CanvasSize = UDim2.new(0, 0, 0, layout.AbsoluteContentSize.Y)
+end)
+
+local UIListLayout = Instance.new("UIListLayout")
+UIListLayout.Padding = UDim.new(0, 8)
+UIListLayout.Parent = PlayerList
+
+local friendships = {}
+
+local function createPlayerButton(player)
+    local button = Instance.new("TextButton")
+    button.Name = player.Name
+    button.Size = UDim2.new(1, 0, 0, 60)
+    button.BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+    button.BorderSizePixel = 0
+    button.Text = ""
+    button.AutoButtonColor = false
+    button.Parent = PlayerList
+    local Corner = Instance.new("UICorner")
+	Corner.CornerRadius = UDim.new(0, 6)
+	Corner.Parent = button
+    local Layout = Instance.new("UIListLayout")
+    Layout.Padding = UDim.new(0, 5)
+    Layout.Parent = button
+    local DisplayNameLabel = Instance.new("TextLabel")
+    DisplayNameLabel.Name = "DisplayName"
+	DisplayNameLabel.Size = UDim2.new(1, -60, 0, 15)
+	DisplayNameLabel.Position = UDim2.new(0, 50, 0, 25)
+    DisplayNameLabel.BackgroundTransparency = 1
+    DisplayNameLabel.Text = "@" .. player.DisplayName
+    DisplayNameLabel.TextColor3 = Color3.fromRGB(180, 180, 180)
+    DisplayNameLabel.Font = Enum.Font.Gotham
+    DisplayNameLabel.TextSize = 12
+    DisplayNameLabel.TextXAlignment = Enum.TextXAlignment.Left
+    DisplayNameLabel.Parent = button
+	local FriendCount = Instance.new("TextLabel")
+	FriendCount.Name = "FriendCount"
+	FriendCount.Size = UDim2.new(0, 60, 0, 18)
+	FriendCount.Position = UDim2.new(1, -65, 0, 5)
+	FriendCount.AnchorPoint = Vector2.new(0, 0)
+	FriendCount.BackgroundColor3 = Color3.fromRGB(45, 70, 50)
+	FriendCount.BackgroundTransparency = 1
+	FriendCount.Text = ""
+	FriendCount.TextColor3 = Color3.fromRGB(255, 255, 255)
+	FriendCount.Font = Enum.Font.GothamBold
+	FriendCount.TextSize = 0
+	FriendCount.TextXAlignment = Enum.TextXAlignment.Center
+	FriendCount.TextYAlignment = Enum.TextYAlignment.Center
+	FriendCount.ZIndex = 5
+	FriendCount.Parent = button
+    local Avatar = Instance.new("ImageLabel")
+    Avatar.Name = "Avatar"
+    Avatar.Size = UDim2.new(0, 40, 0, 40)
+    Avatar.Position = UDim2.new(0, 5, 0, 5)
+    Avatar.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+    Avatar.BorderSizePixel = 0
+    Avatar.Parent = button
+
+    local thumb = Players:GetUserThumbnailAsync(player.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+    Avatar.Image = thumb
+    local AvatarCorner = Instance.new("UICorner")
+    AvatarCorner.CornerRadius = UDim.new(0, 6)
+    AvatarCorner.Parent = Avatar
+    button.MouseEnter:Connect(function()
+        TweenService:Create(button, TweenInfo.new(0.15), {
+            BackgroundColor3 = Color3.fromRGB(55, 55, 65)
+        }):Play()
+    end)
+    button.MouseLeave:Connect(function()
+        TweenService:Create(button, TweenInfo.new(0.15), {
+            BackgroundColor3 = Color3.fromRGB(40, 40, 50)
+        }):Play()
+    end)
+    coroutine.wrap(function()
+        local friendCount = 0
+        for _, otherPlayer in Players:GetPlayers() do
+            if otherPlayer ~= player then
+                local success, isFriend = pcall(function()
+                    return otherPlayer:IsFriendsWith(player.UserId)
+                end)
+                
+                if success and isFriend then
+                    friendCount = friendCount + 1
+                    local found = false
+                    for _, pair in ipairs(friendships) do
+                        if (pair[1] == player and pair[2] == otherPlayer) or (pair[1] == otherPlayer and pair[2] == player) then
+                            found = true
+                            break
+                        end
+                    end
+                    
+                    if not found then
+                        table.insert(friendships, {player, otherPlayer})
+                    end
+                end
+            end
+        end
+        FriendCount.Text = "Friends: " .. friendCount
+    end)()
+    button.MouseButton1Click:Connect(function()
+        local Popup = Instance.new("Frame")
+        Popup.Name = "FriendListPopup"
+        Popup.Size = UDim2.new(0, 300, 0, 400)
+        Popup.Position = UDim2.new(0.5, -150, 0.5, -200)
+        Popup.AnchorPoint = Vector2.new(0.5, 0.5)
+        Popup.BackgroundColor3 = Color3.fromRGB(35, 35, 45)
+        Popup.BorderSizePixel = 0
+        Popup.Parent = ScreenGui
+        local PopupCorner = Instance.new("UICorner")
+        PopupCorner.CornerRadius = UDim.new(0, 8)
+        PopupCorner.Parent = Popup
+        local PopupShadow = Instance.new("ImageLabel")
+        PopupShadow.Name = "Shadow"
+        PopupShadow.Size = UDim2.new(1, 10, 1, 10)
+        PopupShadow.Position = UDim2.new(0, -5, 0, -5)
+        PopupShadow.BackgroundTransparency = 1
+        PopupShadow.Image = "rbxassetid://1316045217"
+        PopupShadow.ImageColor3 = Color3.new(0, 0, 0)
+        PopupShadow.ImageTransparency = 0.8
+        PopupShadow.ScaleType = Enum.ScaleType.Slice
+        PopupShadow.SliceCenter = Rect.new(10, 10, 118, 118)
+        PopupShadow.ZIndex = -1
+        PopupShadow.Parent = Popup
+        local PopupTitle = Instance.new("TextLabel")
+        PopupTitle.Name = "Title"
+        PopupTitle.Size = UDim2.new(1, 0, 0, 40)
+        PopupTitle.Position = UDim2.new(0, 0, 0, 0)
+        PopupTitle.BackgroundColor3 = Color3.fromRGB(45, 45, 55)
+        PopupTitle.BorderSizePixel = 0
+        PopupTitle.Text = player.Name .. "'s Friends"
+        PopupTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+        PopupTitle.Font = Enum.Font.GothamBold
+        PopupTitle.TextSize = 16
+        PopupTitle.Parent = Popup
+        local PopupClose = Instance.new("ImageButton")
+        PopupClose.Name = "CloseButton"
+        PopupClose.Size = UDim2.new(0, 25, 0, 25)
+        PopupClose.Position = UDim2.new(1, -30, 0.5, -12)
+        PopupClose.AnchorPoint = Vector2.new(0, 0.5)
+        PopupClose.BackgroundTransparency = 1
+        PopupClose.Image = "rbxassetid://3926305904"
+        PopupClose.ImageRectOffset = Vector2.new(284, 4)
+        PopupClose.ImageRectSize = Vector2.new(24, 24)
+        PopupClose.Parent = PopupTitle
+        local FriendsScroll = Instance.new("ScrollingFrame")
+        FriendsScroll.Name = "FriendsScroll"
+        FriendsScroll.Size = UDim2.new(1, -10, 1, -50)
+        FriendsScroll.Position = UDim2.new(0, 5, 0, 45)
+        FriendsScroll.BackgroundTransparency = 1
+        FriendsScroll.ScrollBarThickness = 2
+        FriendsScroll.Parent = Popup
+        local FriendsLayout = Instance.new("UIListLayout")
+        FriendsLayout.Padding = UDim.new(0, 5)
+        FriendsLayout.Parent = FriendsScroll
+        local friendCount = 0
+        for _, otherPlayer in Players:GetPlayers() do
+            if otherPlayer ~= player then
+                local success, isFriend = pcall(function()
+                    return otherPlayer:IsFriendsWith(player.UserId)
+                end)
+                if success and isFriend then
+                    friendCount = friendCount + 1
+                    local friendEntry = Instance.new("TextButton")
+                    friendEntry.Name = otherPlayer.Name
+                    friendEntry.Size = UDim2.new(1, 0, 0, 40)
+                    friendEntry.BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+                    friendEntry.BorderSizePixel = 0
+                    friendEntry.Text = ""
+                    friendEntry.AutoButtonColor = false
+                    friendEntry.Parent = FriendsScroll
+                    local FriendCorner = Instance.new("UICorner")
+                    FriendCorner.CornerRadius = UDim.new(0, 6)
+                    FriendCorner.Parent = friendEntry
+                    local FriendName = Instance.new("TextLabel")
+                    FriendName.Name = "Name"
+                    FriendName.Size = UDim2.new(1, -50, 1, 0)
+                    FriendName.Position = UDim2.new(0, 50, 0, 0)
+                    FriendName.BackgroundTransparency = 1
+                    FriendName.Text = otherPlayer.Name
+                    FriendName.TextColor3 = Color3.fromRGB(255, 255, 255)
+                    FriendName.Font = Enum.Font.Gotham
+                    FriendName.TextSize = 14
+                    FriendName.TextXAlignment = Enum.TextXAlignment.Left
+                    FriendName.Parent = friendEntry
+                    local FriendAvatar = Instance.new("ImageLabel")
+                    FriendAvatar.Name = "Avatar"
+                    FriendAvatar.Size = UDim2.new(0, 30, 0, 30)
+                    FriendAvatar.Position = UDim2.new(0, 10, 0.5, -15)
+                    FriendAvatar.AnchorPoint = Vector2.new(0, 0.5)
+                    FriendAvatar.BackgroundColor3 = Color3.fromRGB(60, 60, 70)
+                    FriendAvatar.BorderSizePixel = 0
+                    FriendAvatar.Parent = friendEntry
+                    local thumb = Players:GetUserThumbnailAsync(otherPlayer.UserId, Enum.ThumbnailType.HeadShot, Enum.ThumbnailSize.Size100x100)
+                    FriendAvatar.Image = thumb
+                    local AvatarCorner = Instance.new("UICorner")
+                    AvatarCorner.CornerRadius = UDim.new(0, 6)
+                    AvatarCorner.Parent = FriendAvatar
+                    friendEntry.MouseEnter:Connect(function()
+                        TweenService:Create(friendEntry, TweenInfo.new(0.15), {
+                            BackgroundColor3 = Color3.fromRGB(65, 65, 75)
+                        }):Play()
+                    end)
+                    friendEntry.MouseLeave:Connect(function()
+                        TweenService:Create(friendEntry, TweenInfo.new(0.15), {
+                            BackgroundColor3 = Color3.fromRGB(50, 50, 60)
+                        }):Play()
+                    end)
+                end
+            end
+        end
+        if friendCount == 0 then
+            local noFriends = Instance.new("TextLabel")
+            noFriends.Size = UDim2.new(1, 0, 0, 40)
+            noFriends.Position = UDim2.new(0, 0, 0.5, -20)
+            noFriends.BackgroundTransparency = 1
+            noFriends.Text = "No friends in this server"
+            noFriends.TextColor3 = Color3.fromRGB(150, 150, 150)
+            noFriends.Font = Enum.Font.Gotham
+            noFriends.TextSize = 14
+            noFriends.Parent = FriendsScroll
+        end
+        
+        PopupClose.MouseButton1Click:Connect(function()
+            Popup:Destroy()
+        end)
+    end)
+end
+for _, player in ipairs(Players:GetPlayers()) do
+    createPlayerButton(player)
+end
+Players.PlayerAdded:Connect(function(player)
+    createPlayerButton(player)
+end)
+Players.PlayerRemoving:Connect(function(player)
+    local button = PlayerList:FindFirstChild(player.Name)
+    if button then
+        button:Destroy()
+    end
+
+    for i = #friendships, 1, -1 do
+        if friendships[i][1] == player or friendships[i][2] == player then
+            table.remove(friendships, i)
+        end
+    end
+end)
+
+local dragging
+local dragInput
+local dragStart
+local startPos
+
+local function update(input)
+    local delta = input.Position - dragStart
+    MainFrame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+end
+
+Title.InputBegan:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+        dragging = true
+        dragStart = input.Position
+        startPos = MainFrame.Position
+        
+        input.Changed:Connect(function()
+            if input.UserInputState == Enum.UserInputState.End then
+                dragging = false
+            end
+        end)
+    end
+end)
+
+Title.InputChanged:Connect(function(input)
+    if input.UserInputType == Enum.UserInputType.MouseMovement then
+        dragInput = input
+    end
+end)
+
+UserInputService.InputChanged:Connect(function(input)
+    if input == dragInput and dragging then
+        update(input)
+    end
+end)
+
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+local isFriendInServer = true
+
+for _, otherPlayer in ipairs(players:GetPlayers()) do
+	if player:IsFriendsWith(otherPlayer.UserId) then
+		isFriendInServer = true
+		break
+	end
+end
+
+--Currently broken too lazy to fix so placeholder
+if isFriendInServer then
+	button.BackgroundColor3 = Color3.fromRGB(45, 125, 80)
+else
+	button.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+end
+
+    end,
+ })
+
+ local Button = CombatTab:CreateButton({
     Name = "Universal Aimbot",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Xxtan31/Equinox-Hub/main/aimbot.lua", true))("t.me/arceusxscripts")
@@ -7822,7 +8539,86 @@ end)
  local Button = CombatTab:CreateButton({
     Name = "Legit Fake WallHop",
     Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/lyraEz/lol/refs/heads/main/loaders/Shizukii%20wallhop.lua'))
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/ScpGuest666/Random-Roblox-script/refs/heads/main/Roblox%20WallHop%20V4%20script"))()
+    end,
+ })
+
+ local Button = CombatTab:CreateButton({
+    Name = "Fake Lag",
+    Callback = function()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+-- 🌀 Fake Lag Script by synt.t
+local player = game.Players.LocalPlayer
+local char = player.Character or player.CharacterAdded:Wait()
+local hum = char:WaitForChild("Humanoid")
+
+local gui = Instance.new("ScreenGui", game.CoreGui)
+gui.Name = "FakeLagGUI"
+
+local frame = Instance.new("Frame", gui)
+frame.Size = UDim2.new(0, 220, 0, 120)
+frame.Position = UDim2.new(0.35, 0, 0.25, 0)
+frame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
+frame.Active = true
+frame.Draggable = true
+Instance.new("UICorner", frame).CornerRadius = UDim.new(0, 10)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, 0, 0, 30)
+title.Text = "🌀 Fake Lag - synt.t"
+title.Font = Enum.Font.GothamBold
+title.TextSize = 16
+title.TextColor3 = Color3.fromHSV(0,1,1)
+title.BackgroundTransparency = 1
+spawn(function() while wait() do title.TextColor3 = Color3.fromHSV(tick()%5/5,1,1) end end)
+
+local toggleBtn = Instance.new("TextButton", frame)
+toggleBtn.Size = UDim2.new(0.9, 0, 0, 30)
+toggleBtn.Position = UDim2.new(0.05, 0, 0, 40)
+toggleBtn.Text = "Fake Lag: OFF"
+toggleBtn.Font = Enum.Font.Gotham
+toggleBtn.TextSize = 14
+toggleBtn.BackgroundColor3 = Color3.fromRGB(35,35,35)
+toggleBtn.TextColor3 = Color3.new(1,1,1)
+Instance.new("UICorner", toggleBtn).CornerRadius = UDim.new(0, 6)
+
+local box = Instance.new("TextBox", frame)
+box.Size = UDim2.new(0.9, 0, 0, 25)
+box.Position = UDim2.new(0.05, 0, 0, 80)
+box.PlaceholderText = "Speed (e.g. 2 for slowmo, 0.3 for hyper)"
+box.Text = ""
+box.BackgroundColor3 = Color3.fromRGB(45,45,45)
+box.TextColor3 = Color3.new(1,1,1)
+box.Font = Enum.Font.Gotham
+box.TextSize = 13
+Instance.new("UICorner", box).CornerRadius = UDim.new(0, 6)
+
+local fakeLag = false
+local delayValue = 2
+
+toggleBtn.MouseButton1Click:Connect(function()
+	fakeLag = not fakeLag
+	toggleBtn.Text = "Fake Lag: "..(fakeLag and "ON" or "OFF")
+	if fakeLag then
+		delayValue = tonumber(box.Text) or 2
+		spawn(function()
+			while fakeLag do
+				if char:FindFirstChild("HumanoidRootPart") then
+					char.HumanoidRootPart.Anchored = true
+					wait(delayValue)
+					char.HumanoidRootPart.Anchored = false
+				end
+				wait(0.05)
+			end
+		end)
+	end
+end)
+
     end,
  })
 
@@ -7952,7 +8748,7 @@ game:GetService("UserInputService").InputBegan:connect(onKeyPress)
     end,
  })
 
- local TrollTab = Window:CreateTab("💢Trolling Scripts", 4483362458) -- Title, Image
+ local TrollTab = Window:CreateTab("💢Trolling Scripts", "smile") -- Title, Image
  local TrollSection = TrollTab:CreateSection("Trolling")
 
  local Button = TrollTab:CreateButton({
@@ -8015,16 +8811,524 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/twig76/ayra/refs/head
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "Chat Art (Many colors)",
+    Name = "Chat Draw",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/Avtor1zaTion/ChatDrawByAvtorScripts/refs/heads/main/ByAvtor1zaTion"))()
     end,
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "Chat Art (2 colors)",
+    Name = "Chat Art",
     Callback = function()
-        loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-FE-chat-draw-script-17621"))()
+        -- Color Emoji Pixel Art Drawer
+if _G.CanOpenColorDraw == 'Y' or _G.CanOpenColorDraw == nil then
+    _G.CanOpenColorDraw = 'N'
+    
+    local ScreenGui = Instance.new("ScreenGui")
+    local Frame = Instance.new("Frame")
+    local UIGradient = Instance.new("UIGradient")
+    local UICorner = Instance.new("UICorner")
+    local TitleBase = Instance.new("TextLabel") -- Main title
+    local TitlePro = Instance.new("TextLabel") -- "Pro" text
+    local chat = Instance.new("TextButton")
+    local UICorner_2 = Instance.new("UICorner")
+    local close = Instance.new("TextButton")
+    local UICorner_3 = Instance.new("UICorner")
+    local ColorPalette = Instance.new("Frame")
+    local UIListLayout = Instance.new("UIListLayout")
+    
+    -- Try to parent to CoreGui first, then fallback to PlayerGui
+    local success, err = pcall(function()
+        ScreenGui.Parent = game:GetService("CoreGui")
+    end)
+    
+    if not success then
+        ScreenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+    end
+    
+    ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+    ScreenGui.ResetOnSpawn = false
+    
+    Frame.Parent = ScreenGui
+    Frame.Active = true
+    Frame.Draggable = true
+    Frame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+    Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Frame.BorderSizePixel = 0
+    Frame.Position = UDim2.new(0.105488181, 0, 0.147911012, 0)
+    Frame.Size = UDim2.new(0.320783861, 0, 0.456124362, 0) -- Made wider and taller for bigger title
+    Frame.SizeConstraint = Enum.SizeConstraint.RelativeXX
+    
+    UIGradient.Color = ColorSequence.new{
+        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 30, 30)), 
+        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(45, 45, 45)), 
+        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 30, 30))
+    }
+    UIGradient.Rotation = 45
+    UIGradient.Parent = Frame
+    
+    UICorner.CornerRadius = UDim.new(0, 10)
+    UICorner.Parent = Frame
+    
+    -- Main title (Chat Draw) - Made much bigger
+    TitleBase.Name = "TitleBase"
+    TitleBase.Parent = Frame
+    TitleBase.BackgroundTransparency = 1
+    TitleBase.Position = UDim2.new(0.02, 0, 0.01, 0)
+    TitleBase.Size = UDim2.new(0, 220, 0, 45)
+    TitleBase.Font = Enum.Font.GothamBold
+    TitleBase.Text = "Chat Draw"
+    TitleBase.TextColor3 = Color3.fromRGB(255, 255, 255)
+    TitleBase.TextSize = 32.000 -- Increased from 24 to 32
+    TitleBase.TextXAlignment = Enum.TextXAlignment.Left
+    
+    -- Pro text with yellow color and dark yellow outline effect - Made HUGE
+    TitlePro.Name = "TitlePro"
+    TitlePro.Parent = Frame
+    TitlePro.BackgroundTransparency = 1
+    TitlePro.Position = UDim2.new(0.5, 0, 0, 0) -- Positioned in the right half
+    TitlePro.Size = UDim2.new(0, 120, 0, 55)
+    TitlePro.Font = Enum.Font.GothamBlack -- Bolder font
+    TitlePro.Text = "PRO"
+    TitlePro.TextColor3 = Color3.fromRGB(255, 215, 0) -- Gold/Yellow color
+    TitlePro.TextSize = 46.000 -- Increased from 32 to 46
+    TitlePro.TextXAlignment = Enum.TextXAlignment.Left
+    
+    -- Create outline effect for Pro text
+    local outlineEffects = {}
+    local outlineOffsets = {
+        {-2, -2}, {0, -2}, {2, -2},
+        {-2, 0},          {2, 0},
+        {-2, 2},  {0, 2},  {2, 2}
+    }
+    
+    for _, offset in ipairs(outlineOffsets) do
+        local outline = Instance.new("TextLabel")
+        outline.Name = "Outline"
+        outline.Parent = TitlePro
+        outline.BackgroundTransparency = 1
+        outline.Position = UDim2.new(0, offset[1], 0, offset[2])
+        outline.Size = UDim2.new(1, 0, 1, 0)
+        outline.Font = Enum.Font.GothamBlack -- Matching the main text
+        outline.Text = "PRO"
+        outline.TextColor3 = Color3.fromRGB(180, 140, 0) -- Dark yellow/gold
+        outline.TextSize = 46.000 -- Matching the main text
+        outline.TextXAlignment = Enum.TextXAlignment.Left
+        outline.ZIndex = TitlePro.ZIndex - 1
+        table.insert(outlineEffects, outline)
+    end
+    
+    -- Bring the main Pro text to front
+    TitlePro.ZIndex = 10
+    
+    chat.Name = "chat"
+    chat.Parent = Frame
+    chat.BackgroundColor3 = Color3.fromRGB(80, 180, 80)
+    chat.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    chat.BorderSizePixel = 0
+    chat.Position = UDim2.new(0.75, -39, 0.880470445, 0)
+    chat.Size = UDim2.new(0, 70, 0, 42) -- Made bigger
+    chat.Font = Enum.Font.GothamBold
+    chat.Text = "Chat"
+    chat.TextColor3 = Color3.fromRGB(255, 255, 255)
+    chat.TextSize = 18.000 -- Increased size
+    
+    UICorner_2.CornerRadius = UDim.new(0, 8)
+    UICorner_2.Parent = chat
+    
+    close.Name = "close"
+    close.Parent = Frame
+    close.BackgroundColor3 = Color3.fromRGB(255, 80, 80)
+    close.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    close.BorderSizePixel = 0
+    close.Position = UDim2.new(0.93, 0, 0, 0)
+    close.Size = UDim2.new(0.070000001, 0, 0.100000001, 0)
+    close.SizeConstraint = Enum.SizeConstraint.RelativeXX
+    close.Font = Enum.Font.GothamBold
+    close.Text = "X"
+    close.TextColor3 = Color3.fromRGB(255, 255, 255)
+    close.TextSize = 16.000
+    
+    UICorner_3.CornerRadius = UDim.new(0, 8)
+    UICorner_3.Parent = close
+    
+    -- Create two color palette frames for more colors
+    ColorPalette = Instance.new("Frame")
+    ColorPalette.Name = "ColorPalette1"
+    ColorPalette.Parent = Frame
+    ColorPalette.BackgroundTransparency = 1
+    ColorPalette.Position = UDim2.new(0.02, 0, 0.16, 0) -- Adjusted for bigger title
+    ColorPalette.Size = UDim2.new(0.96, 0, 0.06, 0)
+    
+    UIListLayout.Parent = ColorPalette
+    UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout.Padding = UDim.new(0.01, 0)
+    
+    local ColorPalette2 = Instance.new("Frame")
+    ColorPalette2.Name = "ColorPalette2"
+    ColorPalette2.Parent = Frame
+    ColorPalette2.BackgroundTransparency = 1
+    ColorPalette2.Position = UDim2.new(0.02, 0, 0.23, 0) -- Adjusted for bigger title
+    ColorPalette2.Size = UDim2.new(0.96, 0, 0.06, 0)
+    
+    local UIListLayout2 = Instance.new("UIListLayout")
+    UIListLayout2.Parent = ColorPalette2
+    UIListLayout2.FillDirection = Enum.FillDirection.Horizontal
+    UIListLayout2.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout2.Padding = UDim.new(0.01, 0)
+    
+    -- Extended color emoji mapping with more colors
+    local colorEmojis = {
+        -- First row (standard colors)
+        {name = "red", emoji = "📕", color = Color3.fromRGB(255, 0, 0), row = 1},
+        {name = "green", emoji = "📗", color = Color3.fromRGB(0, 255, 0), row = 1},
+        {name = "blue", emoji = "📘", color = Color3.fromRGB(0, 0, 255), row = 1},
+        {name = "yellow", emoji = "📙", color = Color3.fromRGB(255, 255, 0), row = 1},
+        {name = "orange", emoji = "🟧", color = Color3.fromRGB(255, 165, 0), row = 1},
+        {name = "purple", emoji = "🟪", color = Color3.fromRGB(128, 0, 128), row = 1},
+        {name = "black", emoji = "⬛", color = Color3.fromRGB(0, 0, 0), row = 1},
+        {name = "white", emoji = "⬜", color = Color3.fromRGB(255, 255, 255), row = 1},
+        
+        -- Second row (additional colors)
+        {name = "brown", emoji = "🟫", color = Color3.fromRGB(139, 69, 19), row = 2},
+        {name = "cyan", emoji = "🟦", color = Color3.fromRGB(0, 255, 255), row = 2},
+        {name = "pink", emoji = "🌸", color = Color3.fromRGB(255, 105, 180), row = 2},
+        {name = "lime", emoji = "🟢", color = Color3.fromRGB(50, 205, 50), row = 2},
+        {name = "gray", emoji = "⚪", color = Color3.fromRGB(128, 128, 128), row = 2},
+        {name = "maroon", emoji = "🔴", color = Color3.fromRGB(128, 0, 0), row = 2},
+        {name = "navy", emoji = "🔵", color = Color3.fromRGB(0, 0, 128), row = 2},
+        {name = "gold", emoji = "⭐", color = Color3.fromRGB(255, 215, 0), row = 2}
+    }
+    
+    local selectedColor = colorEmojis[1]
+    local colorButtons = {}
+    
+    -- Create color buttons
+    for i, colorInfo in ipairs(colorEmojis) do
+        local parentPalette = colorInfo.row == 1 and ColorPalette or ColorPalette2
+        
+        local colorButton = Instance.new("TextButton")
+        colorButton.Name = colorInfo.name
+        colorButton.Parent = parentPalette
+        colorButton.BackgroundColor3 = colorInfo.color
+        colorButton.BorderSizePixel = 0
+        colorButton.Size = UDim2.new(0.115, 0, 1, 0)
+        colorButton.Font = Enum.Font.GothamBold
+        colorButton.Text = ""
+        colorButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+        
+        local uiCorner = Instance.new("UICorner")
+        uiCorner.CornerRadius = UDim.new(0, 4)
+        uiCorner.Parent = colorButton
+        
+        colorButtons[colorInfo.name] = colorButton
+        
+        colorButton.MouseButton1Click:Connect(function()
+            selectedColor = colorInfo
+            
+            -- Update button appearance
+            for _, button in pairs(colorButtons) do
+                button.BorderSizePixel = 0
+            end
+            colorButton.BorderSizePixel = 2
+            colorButton.BorderColor3 = Color3.fromRGB(255, 255, 255)
+        end)
+    end
+    
+    -- Set initial selected color
+    colorButtons["red"].BorderSizePixel = 2
+    colorButtons["red"].BorderColor3 = Color3.fromRGB(255, 255, 255)
+    
+    -- Create grid container
+    local gridContainer = Instance.new("Frame")
+    gridContainer.Name = "GridContainer"
+    gridContainer.BackgroundTransparency = 1
+    gridContainer.Position = UDim2.new(0.05, 0, 0.31, 0) -- Adjusted for bigger title
+    gridContainer.Size = UDim2.new(0.9, 0, 0.55, 0)
+    gridContainer.Parent = Frame
+    
+    -- Create grid function
+    local grid = {}
+    local currentGridSize = 7 -- Default grid size
+    local gridSizes = {
+        {width = 7, height = 7, label = "7x7"},
+        {width = 11, height = 11, label = "11x11"},
+        {width = 11, height = 15, label = "11x15"},
+        {width = 12, height = 17, label = "12x17"} -- New size added
+    }
+    local currentSizeIndex = 1
+    
+    local function createGrid(width, height)
+        -- Clear existing grid
+        for _, row in pairs(grid) do
+            for _, cell in pairs(row) do
+                if cell.button then
+                    cell.button:Destroy()
+                end
+            end
+        end
+        grid = {}
+        
+        -- Calculate cell size to make the grid fill the container
+        local cellWidth = 1 / width
+        local cellHeight = 1 / height
+        local cellPadding = 0.01 -- Small gap between cells
+        local actualCellWidth = cellWidth - cellPadding
+        local actualCellHeight = cellHeight - cellPadding
+        
+        for i = 1, height do
+            grid[i] = {}
+            for j = 1, width do
+                local button = Instance.new("TextButton")
+                button.Name = i.."_"..j
+                button.Size = UDim2.new(actualCellWidth, 0, actualCellHeight, 0)
+                button.Position = UDim2.new((j-1) * cellWidth, 0, (i-1) * cellHeight, 0)
+                button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- White grid
+                button.BorderSizePixel = 0
+                button.Text = ""
+                button.Font = Enum.Font.GothamBold
+                
+                -- Adjust text size based on grid size for better appearance
+                if width >= 12 or height >= 15 then
+                    button.TextSize = 14 -- Smaller text for larger grids
+                else
+                    button.TextSize = 18
+                end
+                
+                button.Parent = gridContainer
+                
+                grid[i][j] = {
+                    button = button,
+                    color = nil,
+                    emoji = ""
+                }
+                
+                button.MouseButton1Click:Connect(function()
+                    if grid[i][j].color == selectedColor.name then
+                        -- Toggle off
+                        button.Text = ""
+                        grid[i][j].color = nil
+                        grid[i][j].emoji = ""
+                        button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Reset to white
+                    else
+                        -- Set new color
+                        button.Text = selectedColor.emoji
+                        grid[i][j].color = selectedColor.name
+                        grid[i][j].emoji = selectedColor.emoji
+                        button.BackgroundColor3 = Color3.fromRGB(220, 220, 220) -- Slightly darker white to show selection
+                    end
+                end)
+            end
+        end
+    end
+    
+    -- Create initial grid
+    createGrid(gridSizes[currentSizeIndex].width, gridSizes[currentSizeIndex].height)
+    
+    -- Function to send messages to chat (with multiple methods for reliability)
+    local function sendToChat(message)
+        -- Method 1: Legacy chat system
+        pcall(function()
+            if game:GetService("TextChatService").ChatVersion == Enum.ChatVersion.LegacyChatService then
+                game:GetService("ReplicatedStorage"):WaitForChild("DefaultChatSystemChatEvents"):WaitForChild("SayMessageRequest"):FireServer(message, "All")
+            else
+                game:GetService("TextChatService").TextChannels.RBXGeneral:SendAsync(message)
+            end
+        end)
+        
+        -- Method 2: Players Chat method (direct player chat)
+        pcall(function()
+            game:GetService("Players").LocalPlayer:Chat(message)
+        end)
+    end
+    
+    -- Function to force the player to chat a message
+    local function forcePlayerChat(message)
+        -- This makes the player say the message directly
+        game:GetService("Players").LocalPlayer:Chat(message)
+    end
+    
+    -- Announce the script in chat when it starts
+    task.spawn(function()
+        wait(1) -- Short delay to ensure everything is loaded
+        forcePlayerChat("CHAT DRAW PRO SCRIPT MADE BY MOONER")
+    end)
+    
+    -- Chat button functionality
+    chat.MouseButton1Click:Connect(function()
+        local currentSize = gridSizes[currentSizeIndex]
+        
+        -- Create a message to indicate what's being sent
+        local infoMessage = "Sending " .. currentSize.label .. " drawing..."
+        sendToChat(infoMessage)
+        wait(0.1)
+        
+        for i = 1, currentSize.height do
+            local rowText = ""
+            for j = 1, currentSize.width do
+                if grid[i][j].emoji ~= "" then
+                    rowText = rowText .. grid[i][j].emoji
+                else
+                    rowText = rowText .. "⬜" -- Empty cell
+                end
+            end
+            sendToChat(rowText)
+            wait(0.1) -- Small delay to prevent chat throttling
+        end
+        
+        -- Send completion message
+        wait(0.1)
+        sendToChat("Drawing complete!")
+    end)
+    
+    -- Close button functionality
+    close.MouseButton1Click:Connect(function()
+        _G.CanOpenColorDraw = 'Y'
+        ScreenGui:Destroy()
+    end)
+    
+    -- Add a clear button
+    local clear = Instance.new("TextButton")
+    clear.Name = "clear"
+    clear.Parent = Frame
+    clear.BackgroundColor3 = Color3.fromRGB(180, 80, 80)
+    clear.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    clear.BorderSizePixel = 0
+    clear.Position = UDim2.new(0.05, 0, 0.880470445, 0)
+    clear.Size = UDim2.new(0, 70, 0, 42) -- Made bigger
+    clear.Font = Enum.Font.GothamBold
+    clear.Text = "Clear"
+    clear.TextColor3 = Color3.fromRGB(255, 255, 255)
+    clear.TextSize = 18.000 -- Increased size
+    
+    local clearCorner = Instance.new("UICorner")
+    clearCorner.CornerRadius = UDim.new(0, 8)
+    clearCorner.Parent = clear
+    
+    clear.MouseButton1Click:Connect(function()
+        local currentSize = gridSizes[currentSizeIndex]
+        for i = 1, currentSize.height do
+            for j = 1, currentSize.width do
+                local cell = grid[i][j]
+                if cell and cell.button then
+                    cell.button.Text = ""
+                    cell.color = nil
+                    cell.emoji = ""
+                    cell.button.BackgroundColor3 = Color3.fromRGB(255, 255, 255) -- Reset to white
+                end
+            end
+        end
+    end)
+    
+    -- Add a fill button
+    local fill = Instance.new("TextButton")
+    fill.Name = "fill"
+    fill.Parent = Frame
+    fill.BackgroundColor3 = Color3.fromRGB(80, 80, 180)
+    fill.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    fill.BorderSizePixel = 0
+    fill.Position = UDim2.new(0.525, 0, 0.880470445, 0)
+    fill.Size = UDim2.new(0, 70, 0, 42) -- Made bigger
+    fill.Font = Enum.Font.GothamBold
+    fill.Text = "Fill"
+    fill.TextColor3 = Color3.fromRGB(255, 255, 255)
+    fill.TextSize = 18.000 -- Increased size
+    
+    local fillCorner = Instance.new("UICorner")
+    fillCorner.CornerRadius = UDim.new(0, 8)
+    fillCorner.Parent = fill
+    
+    -- Add a scale button
+    local scale = Instance.new("TextButton")
+    scale.Name = "scale"
+    scale.Parent = Frame
+    scale.BackgroundColor3 = Color3.fromRGB(80, 140, 180) -- Blue-ish color
+    scale.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    scale.BorderSizePixel = 0
+    scale.Position = UDim2.new(0.2875, 0, 0.880470445, 0) -- Position between Clear and Fill
+    scale.Size = UDim2.new(0, 70, 0, 42) -- Made bigger
+    scale.Font = Enum.Font.GothamBold
+    scale.Text = gridSizes[currentSizeIndex].label
+    scale.TextColor3 = Color3.fromRGB(255, 255, 255)
+    scale.TextSize = 18.000 -- Increased size
+    
+    local scaleCorner = Instance.new("UICorner")
+    scaleCorner.CornerRadius = UDim.new(0, 8)
+    scaleCorner.Parent = scale
+    
+    -- Create tooltip for scale button
+    local scaleTooltip = Instance.new("TextLabel")
+    scaleTooltip.Name = "ScaleTooltip"
+    scaleTooltip.Parent = Frame
+    scaleTooltip.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+    scaleTooltip.BorderSizePixel = 0
+    scaleTooltip.Position = UDim2.new(0.2875, 0, 0.83, 0)
+    scaleTooltip.Size = UDim2.new(0, 100, 0, 20)
+    scaleTooltip.Font = Enum.Font.Gotham
+    scaleTooltip.Text = "Grid Size"
+    scaleTooltip.TextColor3 = Color3.fromRGB(255, 255, 255)
+    scaleTooltip.TextSize = 12.000
+    scaleTooltip.Visible = false
+    
+    local tooltipCorner = Instance.new("UICorner")
+    tooltipCorner.CornerRadius = UDim.new(0, 4)
+    tooltipCorner.Parent = scaleTooltip
+    
+    -- Show tooltip on hover
+    scale.MouseEnter:Connect(function()
+        scaleTooltip.Visible = true
+    end)
+    
+    scale.MouseLeave:Connect(function()
+        scaleTooltip.Visible = false
+    end)
+    
+    -- Scale button functionality
+    scale.MouseButton1Click:Connect(function()
+        -- Cycle through grid sizes
+        currentSizeIndex = (currentSizeIndex % #gridSizes) + 1
+        local newSize = gridSizes[currentSizeIndex]
+        
+        -- Update button text
+        scale.Text = newSize.label
+        
+        -- Recreate grid with new size
+        createGrid(newSize.width, newSize.height)
+    end)
+    
+    fill.MouseButton1Click:Connect(function()
+        local currentSize = gridSizes[currentSizeIndex]
+        for i = 1, currentSize.height do
+            for j = 1, currentSize.width do
+                local cell = grid[i][j]
+                if cell and cell.button then
+                    cell.button.Text = selectedColor.emoji
+                    cell.color = selectedColor.name
+                    cell.emoji = selectedColor.emoji
+                    cell.button.BackgroundColor3 = Color3.fromRGB(220, 220, 220) -- Slightly darker white
+                end
+            end
+        end
+    end)
+    
+    -- Animate gradient
+    local function CVXH_fake_script()
+        local script = Instance.new('LocalScript', UIGradient)
+        
+        local RunService = game:GetService("RunService")
+        local ROTATE_SPEED = 15
+        local uiGradient = script.Parent
+        
+        local function onRenderStep(deltaTime)
+            local currentRotation = uiGradient.Rotation
+            uiGradient.Rotation = (currentRotation + ROTATE_SPEED * deltaTime) % 360
+        end
+        
+        RunService.RenderStepped:Connect(onRenderStep)
+    end
+    coroutine.wrap(CVXH_fake_script)()
+    end
     end,
  })
 
@@ -10010,7 +11314,7 @@ toggleAnimation()
     end,
  })
 
- local ExploiterTab = Window:CreateTab("🛡️Anti-Exploiter", 4483362458) -- Title, Image
+ local ExploiterTab = Window:CreateTab("🛡️Anti-Exploiter", "shield") -- Title, Image
  local ExploiterSection = ExploiterTab:CreateSection("Scripts")
 
  local Button = ExploiterTab:CreateButton({
@@ -10263,7 +11567,7 @@ workspace.FallenPartsDestroyHeight = -500
     end,
  })
 
- local ServerTab = Window:CreateTab("🖥️Server", 4483362458) -- Title, Image
+ local ServerTab = Window:CreateTab("🖥️Server", "server") -- Title, Image
  local ServersSection = ServerTab:CreateSection("Script")
 
  local Button = ServerTab:CreateButton({
@@ -11140,29 +12444,8 @@ end)
     end,
  })
 
- local ToolsTab = Window:CreateTab("🔨Tools", 4483362458) -- Title, Image
+ local ToolsTab = Window:CreateTab("🔨Tools", "drill") -- Title, Image
  local ToolsSection = ToolsTab:CreateSection("Tools")
-
- local Button = ToolsTab:CreateButton({
-    Name = "Btools F3X",
-    Callback = function()
-        loadstring(game:GetObjects("rbxassetid://6695644299")[1].Source)()
-    end,
- })
-
- local Button = ToolsTab:CreateButton({
-    Name = "Btools",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/FBKJTUyw"))("t.me/AvtorScripts");
-    end,
- })
-
- local Button = ToolsTab:CreateButton({
-    Name = "BlackHole Tool",
-    Callback = function()
-        loadstring(game:HttpGet("https://gist.githubusercontent.com/sovetskii-shashlik/eaeb8a759ac9f84212f4dd86da352d98/raw/5fd3320f6c8ae46a0963c03f30e595915aa14aa5/Shashlik-blackhole.lua"))()
-    end,
- })
 
  local Button = ToolsTab:CreateButton({
     Name = "Flashlight",
@@ -12529,1160 +13812,6 @@ end
  })
 
  local Button = ToolsTab:CreateButton({
-    Name = "FE Gravity Gun",
-    Callback = function()
-        --[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
--- https://www.youtube.com/c/DOXPLOV/ subscribe for more rare scripts
-
-function sandbox(var,func)
-	local env = getfenv(func)
-	local newenv = setmetatable({},{
-		__index = function(self,k)
-			if k=="script" then
-				return var
-			else
-				return env[k]
-			end
-		end,
-	})
-	setfenv(func,newenv)
-	return func
-end
-cors = {}
-mas = Instance.new("Model",game:GetService("Lighting"))
-Tool0 = Instance.new("Tool")
-Part1 = Instance.new("Part")
-CylinderMesh2 = Instance.new("CylinderMesh")
-Part3 = Instance.new("Part")
-LocalScript4 = Instance.new("LocalScript")
-Script5 = Instance.new("Script")
-LocalScript6 = Instance.new("LocalScript")
-Script7 = Instance.new("Script")
-LocalScript8 = Instance.new("LocalScript")
-Part9 = Instance.new("Part")
-Script10 = Instance.new("Script")
-Part11 = Instance.new("Part")
-Script12 = Instance.new("Script")
-Part13 = Instance.new("Part")
-Script14 = Instance.new("Script")
-Tool0.Name = "Telekinesis Gun"
-Tool0.Parent = mas
-Tool0.CanBeDropped = false
-Part1.Name = "Handle"
-Part1.Parent = Tool0
-Part1.Material = Enum.Material.Neon
-Part1.BrickColor = BrickColor.new("Cyan")
-Part1.Transparency = 1
-Part1.Rotation = Vector3.new(0, 15.4200001, 0)
-Part1.CanCollide = false
-Part1.FormFactor = Enum.FormFactor.Custom
-Part1.Size = Vector3.new(1, 0.400000036, 0.300000012)
-Part1.CFrame = CFrame.new(-55.2695465, 0.696546972, 0.383156985, 0.96399641, -4.98074878e-05, 0.265921414, 4.79998416e-05, 1, 1.32960558e-05, -0.265921414, -5.30653779e-08, 0.96399641)
-Part1.BottomSurface = Enum.SurfaceType.Smooth
-Part1.TopSurface = Enum.SurfaceType.Smooth
-Part1.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Part1.Position = Vector3.new(-55.2695465, 0.696546972, 0.383156985)
-Part1.Orientation = Vector3.new(0, 15.4200001, 0)
-Part1.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-CylinderMesh2.Parent = Part1
-CylinderMesh2.Scale = Vector3.new(0.100000001, 0.100000001, 0.100000001)
-CylinderMesh2.Scale = Vector3.new(0.100000001, 0.100000001, 0.100000001)
-Part3.Name = "Shoot"
-Part3.Parent = Tool0
-Part3.Material = Enum.Material.Neon
-Part3.BrickColor = BrickColor.new("Cyan")
-Part3.Reflectance = 0.30000001192093
-Part3.Transparency = 1
-Part3.Rotation = Vector3.new(90.9799957, 0.25999999, -91.409996)
-Part3.CanCollide = false
-Part3.FormFactor = Enum.FormFactor.Custom
-Part3.Size = Vector3.new(0.200000003, 0.25, 0.310000032)
-Part3.CFrame = CFrame.new(-54.7998123, 0.774299085, -0.757350147, -0.0245519895, 0.99968797, 0.00460194098, 0.0169109926, 0.00501798885, -0.999844491, -0.999555528, -0.0244703442, -0.0170289185)
-Part3.BottomSurface = Enum.SurfaceType.Smooth
-Part3.TopSurface = Enum.SurfaceType.Smooth
-Part3.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Part3.Position = Vector3.new(-54.7998123, 0.774299085, -0.757350147)
-Part3.Orientation = Vector3.new(88.9899979, 164.87999, 73.4700012)
-Part3.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-LocalScript4.Parent = Tool0
-table.insert(cors,sandbox(LocalScript4,function()
--- Variables for services
-local render = game:GetService("RunService").RenderStepped
-local contextActionService = game:GetService("ContextActionService")
-local userInputService = game:GetService("UserInputService")
-
-local player = game.Players.LocalPlayer
-local mouse = player:GetMouse()
-local Tool = script.Parent
-
--- Variables for Module Scripts
-local screenSpace = require(Tool:WaitForChild("ScreenSpace"))
-
-local connection
--- Variables for character joints
-
-local neck, shoulder, oldNeckC0, oldShoulderC0 
-
-local mobileShouldTrack = true
-
--- Thourough check to see if a character is sitting
-local function amISitting(character)
-	local t = character.Torso
-	for _, part in pairs(t:GetConnectedParts(true)) do
-		if part:IsA("Seat") or part:IsA("VehicleSeat") then
-			return true
-		end
-	end
-end
-
--- Function to call on renderstepped. Orients the character so it is facing towards
--- the player mouse's position in world space. If character is sitting then the torso
--- should not track
-local function frame(mousePosition)
-	-- Special mobile consideration. We don't want to track if the user was touching a ui
-	-- element such as the movement controls. Just return out of function if so to make sure
-	-- character doesn't track
-	if not mobileShouldTrack then return end
-	
-	-- Make sure character isn't swiming. If the character is swimming the following code will
-	-- not work well; the character will not swim correctly. Besides, who shoots underwater?
-	if player.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Swimming then
-		local torso = player.Character.Torso
-		local head = player.Character.Head
-		
-		local toMouse = (mousePosition - head.Position).unit
-		local angle = math.acos(toMouse:Dot(Vector3.new(0,1,0)))
-		
-		local neckAngle = angle
-	
-		-- Limit how much the head can tilt down. Too far and the head looks unnatural
-		if math.deg(neckAngle) > 110 then
-			neckAngle = math.rad(110)
-		end
-		neck.C0 = CFrame.new(0,1,0) * CFrame.Angles(math.pi - neckAngle,math.pi,0)
-		
-		-- Calculate horizontal rotation
-		local arm = player.Character:FindFirstChild("Right Arm")
-		local fromArmPos = torso.Position + torso.CFrame:vectorToWorldSpace(Vector3.new(
-			torso.Size.X/2 + arm.Size.X/2, torso.Size.Y/2 - arm.Size.Z/2, 0))
-		local toMouseArm = ((mousePosition - fromArmPos) * Vector3.new(1,0,1)).unit
-		local look = (torso.CFrame.lookVector * Vector3.new(1,0,1)).unit
-		local lateralAngle = math.acos(toMouseArm:Dot(look))		
-		
-		-- Check for rogue math
-		if tostring(lateralAngle) == "-1.#IND" then
-			lateralAngle = 0
-		end		
-		
-		-- Handle case where character is sitting down
-		if player.Character.Humanoid:GetState() == Enum.HumanoidStateType.Seated then			
-			
-			local cross = torso.CFrame.lookVector:Cross(toMouseArm)
-			if lateralAngle > math.pi/2 then
-				lateralAngle = math.pi/2
-			end
-			if cross.Y < 0 then
-				lateralAngle = -lateralAngle
-			end
-		end	
-		
-		-- Turn shoulder to point to mouse
-		shoulder.C0 = CFrame.new(1,0.5,0) * CFrame.Angles(math.pi/2 - angle,math.pi/2 + lateralAngle,0)	
-		
-		-- If not sitting then aim torso laterally towards mouse
-		if not amISitting(player.Character) then
-			torso.CFrame = CFrame.new(torso.Position, torso.Position + (Vector3.new(
-				mousePosition.X, torso.Position.Y, mousePosition.Z)-torso.Position).unit)
-		else
-			--print("sitting")		
-		end	
-	end
-end
-
--- Function to bind to render stepped if player is on PC
-local function pcFrame()
-	frame(mouse.Hit.p)
-end
-
--- Function to bind to touch moved if player is on mobile
-local function mobileFrame(touch, processed)
-	-- Check to see if the touch was on a UI element. If so, we don't want to update anything
-	if not processed then
-		-- Calculate touch position in world space. Uses Stravant's ScreenSpace Module script
-		-- to create a ray from the camera.
-		local test = screenSpace.ScreenToWorld(touch.Position.X, touch.Position.Y, 1)
-		local nearPos = game.Workspace.CurrentCamera.CoordinateFrame:vectorToWorldSpace(screenSpace.ScreenToWorld(touch.Position.X, touch.Position.Y, 1))
-		nearPos = game.Workspace.CurrentCamera.CoordinateFrame.p - nearPos
-		local farPos = screenSpace.ScreenToWorld(touch.Position.X, touch.Position.Y,50) 
-		farPos = game.Workspace.CurrentCamera.CoordinateFrame:vectorToWorldSpace(farPos) * -1
-		if farPos.magnitude > 900 then
-			farPos = farPos.unit * 900
-		end
-		local ray = Ray.new(nearPos, farPos)
-		local part, pos = game.Workspace:FindPartOnRay(ray, player.Character)
-		
-		-- if a position was found on the ray then update the character's rotation
-		if pos then
-			frame(pos)
-		end
-	end
-end
-
-local oldIcon = nil
--- Function to bind to equip event
-local function equip()
-	local torso = player.Character.Torso
-	
-	-- Setup joint variables
-	neck = torso.Neck	
-	oldNeckC0 = neck.C0
-	shoulder = torso:FindFirstChild("Right Shoulder")
-	oldShoulderC0 = shoulder.C0
-	
-	-- Remember old mouse icon and update current
-	oldIcon = mouse.Icon
-	mouse.Icon = "rbxassetid:// 2184939409"
-	
-	-- Bind TouchMoved event if on mobile. Otherwise connect to renderstepped
-	if userInputService.TouchEnabled then
-		connection = userInputService.TouchMoved:connect(mobileFrame)
-	else
-		connection = render:connect(pcFrame)
-	end
-	
-	-- Bind TouchStarted and TouchEnded. Used to determine if character should rotate
-	-- during touch input
-	userInputService.TouchStarted:connect(function(touch, processed)
-		mobileShouldTrack = not processed
-	end)	
-	userInputService.TouchEnded:connect(function(touch, processed)
-		mobileShouldTrack = false
-	end)
-	
-	-- Fire server's equip event
-	game.ReplicatedStorage.ROBLOX_PistolEquipEvent:FireServer()
-	
-	-- Bind event for when mouse is clicked to fire server's fire event
-	mouse.Button1Down:connect(function()
-		game.ReplicatedStorage.ROBLOX_PistolFireEvent:FireServer(mouse.Hit.p)
-	end)
-	
-	-- Bind reload event to mobile button and r key
-	contextActionService:BindActionToInputTypes("Reload", function() 
-		game.ReplicatedStorage.ROBLOX_PistolReloadEvent:FireServer()		
-	end, true, "")
-	
-	-- If game uses filtering enabled then need to update server while tool is
-	-- held by character.
-	if workspace.FilteringEnabled then
-		while connection do
-			wait()
-			game.ReplicatedStorage.ROBLOX_PistolUpdateEvent:FireServer(neck.C0, shoulder.C0)
-		end
-	end
-end
-
--- Function to bind to Unequip event
-local function unequip()
-	if connection then connection:disconnect() end
-	contextActionService:UnbindAction("Reload")
-	game.ReplicatedStorage.ROBLOX_PistolUnequipEvent:FireServer()
-	mouse.Icon = oldIcon
-	neck.C0 = oldNeckC0
-	shoulder.C0 = oldShoulderC0
-end
-
--- Bind tool events
-Tool.Equipped:connect(equip)
-Tool.Unequipped:connect(unequip)
-end))
-Script5.Name = "qPerfectionWeld"
-Script5.Parent = Tool0
-table.insert(cors,sandbox(Script5,function()
--- Created by Quenty (@Quenty, follow me on twitter).
--- Should work with only ONE copy, seamlessly with weapons, trains, et cetera.
--- Parts should be ANCHORED before use. It will, however, store relatives values and so when tools are reparented, it'll fix them.
-
---[[ INSTRUCTIONS
-- Place in the model
-- Make sure model is anchored
-- That's it. It will weld the model and all children. 
-
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-THIS SCRIPT SHOULD BE USED ONLY BY ITSELF. THE MODEL SHOULD BE ANCHORED. 
-
-This script is designed to be used is a regular script. In a local script it will weld, but it will not attempt to handle ancestory changes. 
-]]
-
---[[ DOCUMENTATION
-- Will work in tools. If ran more than once it will not create more than one weld.  This is especially useful for tools that are dropped and then picked up again.
-- Will work in PBS servers
-- Will work as long as it starts out with the part anchored
-- Stores the relative CFrame as a CFrame value
-- Takes careful measure to reduce lag by not having a joint set off or affected by the parts offset from origin
-- Utilizes a recursive algorith to find all parts in the model
-- Will reweld on script reparent if the script is initially parented to a tool.
-- Welds as fast as possible
-]]
-
--- qPerfectionWeld.lua
--- Created 10/6/2014
--- Author: Quenty
--- Version 1.0.3
-
--- Updated 10/14/2014 - Updated to 1.0.1
---- Bug fix with existing ROBLOX welds ? Repro by asimo3089
-
--- Updated 10/14/2014 - Updated to 1.0.2
---- Fixed bug fix. 
-
--- Updated 10/14/2014 - Updated to 1.0.3
---- Now handles joints semi-acceptably. May be rather hacky with some joints. :/
-
-local NEVER_BREAK_JOINTS = false -- If you set this to true it will never break joints (this can create some welding issues, but can save stuff like hinges).
-
-
-local function CallOnChildren(Instance, FunctionToCall)
-	-- Calls a function on each of the children of a certain object, using recursion.  
-
-	FunctionToCall(Instance)
-
-	for _, Child in next, Instance:GetChildren() do
-		CallOnChildren(Child, FunctionToCall)
-	end
-end
-
-local function GetNearestParent(Instance, ClassName)
-	-- Returns the nearest parent of a certain class, or returns nil
-
-	local Ancestor = Instance
-	repeat
-		Ancestor = Ancestor.Parent
-		if Ancestor == nil then
-			return nil
-		end
-	until Ancestor:IsA(ClassName)
-
-	return Ancestor
-end
-
-local function GetBricks(StartInstance)
-	local List = {}
-
-	-- if StartInstance:IsA("BasePart") then
-	-- 	List[#List+1] = StartInstance
-	-- end
-
-	CallOnChildren(StartInstance, function(Item)
-		if Item:IsA("BasePart") then
-			List[#List+1] = Item;
-		end
-	end)
-
-	return List
-end
-
-local function Modify(Instance, Values)
-	-- Modifies an Instance by using a table.  
-
-	assert(type(Values) == "table", "Values is not a table");
-
-	for Index, Value in next, Values do
-		if type(Index) == "number" then
-			Value.Parent = Instance
-		else
-			Instance[Index] = Value
-		end
-	end
-	return Instance
-end
-
-local function Make(ClassType, Properties)
-	-- Using a syntax hack to create a nice way to Make new items.  
-
-	return Modify(Instance.new(ClassType), Properties)
-end
-
-local Surfaces = {"TopSurface", "BottomSurface", "LeftSurface", "RightSurface", "FrontSurface", "BackSurface"}
-local HingSurfaces = {"Hinge", "Motor", "SteppingMotor"}
-
-local function HasWheelJoint(Part)
-	for _, SurfaceName in pairs(Surfaces) do
-		for _, HingSurfaceName in pairs(HingSurfaces) do
-			if Part[SurfaceName].Name == HingSurfaceName then
-				return true
-			end
-		end
-	end
-	
-	return false
-end
-
-local function ShouldBreakJoints(Part)
-	--- We do not want to break joints of wheels/hinges. This takes the utmost care to not do this. There are
-	--  definitely some edge cases. 
-
-	if NEVER_BREAK_JOINTS then
-		return false
-	end
-	
-	if HasWheelJoint(Part) then
-		return false
-	end
-	
-	local Connected = Part:GetConnectedParts()
-	
-	if #Connected == 1 then
-		return false
-	end
-	
-	for _, Item in pairs(Connected) do
-		if HasWheelJoint(Item) then
-			return false
-		elseif not Item:IsDescendantOf(script.Parent) then
-			return false
-		end
-	end
-	
-	return true
-end
-
-local function WeldTogether(Part0, Part1, JointType, WeldParent)
-	--- Weld's 2 parts together
-	-- @param Part0 The first part
-	-- @param Part1 The second part (Dependent part most of the time).
-	-- @param [JointType] The type of joint. Defaults to weld.
-	-- @param [WeldParent] Parent of the weld, Defaults to Part0 (so GC is better).
-	-- @return The weld created.
-
-	JointType = JointType or "Weld"
-	local RelativeValue = Part1:FindFirstChild("qRelativeCFrameWeldValue")
-	
-	local NewWeld = Part1:FindFirstChild("qCFrameWeldThingy") or Instance.new(JointType)
-	Modify(NewWeld, {
-		Name = "qCFrameWeldThingy";
-		Part0  = Part0;
-		Part1  = Part1;
-		C0     = CFrame.new();--Part0.CFrame:inverse();
-		C1     = RelativeValue and RelativeValue.Value or Part1.CFrame:toObjectSpace(Part0.CFrame); --Part1.CFrame:inverse() * Part0.CFrame;-- Part1.CFrame:inverse();
-		Parent = Part1;
-	})
-
-	if not RelativeValue then
-		RelativeValue = Make("CFrameValue", {
-			Parent     = Part1;
-			Name       = "qRelativeCFrameWeldValue";
-			Archivable = true;
-			Value      = NewWeld.C1;
-		})
-	end
-
-	return NewWeld
-end
-
-local function WeldParts(Parts, MainPart, JointType, DoNotUnanchor)
-	-- @param Parts The Parts to weld. Should be anchored to prevent really horrible results.
-	-- @param MainPart The part to weld the model to (can be in the model).
-	-- @param [JointType] The type of joint. Defaults to weld. 
-	-- @parm DoNotUnanchor Boolean, if true, will not unachor the model after cmopletion.
-	
-	for _, Part in pairs(Parts) do
-		if ShouldBreakJoints(Part) then
-			Part:BreakJoints()
-		end
-	end
-	
-	for _, Part in pairs(Parts) do
-		if Part ~= MainPart then
-			WeldTogether(MainPart, Part, JointType, MainPart)
-		end
-	end
-
-	if not DoNotUnanchor then
-		for _, Part in pairs(Parts) do
-			Part.Anchored = false
-		end
-		MainPart.Anchored = false
-	end
-end
-
-local function PerfectionWeld()	
-	local Tool = GetNearestParent(script, "Tool")
-
-	local Parts = GetBricks(script.Parent)
-	local PrimaryPart = Tool and Tool:FindFirstChild("Handle") and Tool.Handle:IsA("BasePart") and Tool.Handle or script.Parent:IsA("Model") and script.Parent.PrimaryPart or Parts[1]
-
-	if PrimaryPart then
-		WeldParts(Parts, PrimaryPart, "Weld", false)
-	else
-		warn("qWeld - Unable to weld part")
-	end
-	
-	return Tool
-end
-
-local Tool = PerfectionWeld()
-
-
-if Tool and script.ClassName == "Script" then
-	--- Don't bother with local scripts
-
-	script.Parent.AncestryChanged:connect(function()
-		PerfectionWeld()
-	end)
-end
-
--- Created by Quenty (@Quenty, follow me on twitter).
-
-end))
-LocalScript6.Name = "Animate"
-LocalScript6.Parent = Tool0
-table.insert(cors,sandbox(LocalScript6,function()
-local arms = nil
-local torso = nil
-local welds = {}
-local Tool = script.Parent
-local neck = nil
-local orginalC0 = CFrame.new(0, 1, 0, -1, -0, -0, 0, 0, 1, 0, 1, 0)
-
-function Equip(mouse)
-wait(0.01)
-arms = {Tool.Parent:FindFirstChild("Left Arm"), Tool.Parent:FindFirstChild("Right Arm")}
-head = Tool.Parent:FindFirstChild("Head") 
-torso = Tool.Parent:FindFirstChild("Torso")
-if neck == nil then 
-neck = Tool.Parent:FindFirstChild("Torso").Neck
-end 
-if arms ~= nil and torso ~= nil then
-local sh = {torso:FindFirstChild("Left Shoulder"), torso:FindFirstChild("Right Shoulder")}
-if sh ~= nil then
-local yes = true
-if yes then
-yes = false
-sh[1].Part1 = nil
-sh[2].Part1 = nil
-local weld1 = Instance.new("Weld")
-weld1.Part0 = head
-weld1.Parent = head
-weld1.Part1 = arms[1]
-welds[1] = weld1
-local weld2 = Instance.new("Weld")
-weld2.Part0 = head
-weld2.Parent = head
-weld2.Part1 = arms[2]
-welds[2] = weld2
--------------------------here
-weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0, math.rad(-90))
-weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-90), math.rad(-15), 0)
-	mouse.Move:connect(function ()
-		--local Direction = Tool.Direction.Value 
-		local Direction = mouse.Hit.p
-		local b = head.Position.Y-Direction.Y
-		local dist = (head.Position-Direction).magnitude
-		local answer = math.asin(b/dist)
-		neck.C0=orginalC0*CFrame.fromEulerAnglesXYZ(answer,0,0)
-		wait(0.1)
-	end)end
-else
-print("sh")
-end
-else
-print("arms")
-end
-end
-
-function Unequip(mouse)
-if arms ~= nil and torso ~= nil then
-local sh = {torso:FindFirstChild("Left Shoulder"), torso:FindFirstChild("Right Shoulder")}
-if sh ~= nil then
-local yes = true
-if yes then
-yes = false
-	neck.C0 = orginalC0
-
-sh[1].Part1 = arms[1]
-sh[2].Part1 = arms[2]
-welds[1].Parent = nil
-welds[2].Parent = nil
-end
-else
-print("sh")
-end
-else
-print("arms")
-end
-end
-Tool.Equipped:connect(Equip)
-Tool.Unequipped:connect(Unequip)
-
-function Animate()
-arms = {Tool.Parent:FindFirstChild("Left Arm"), Tool.Parent:FindFirstChild("Right Arm")}
-	if Tool.AnimateValue.Value == "Shoot" then 
-		local weld1 = welds[1]
-		local weld2 = welds[2]
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-90), math.rad(-15), 0)
-		wait(0.00001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.05, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-90), math.rad(-15), 0)
-		wait(0.00001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.1, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-95), math.rad(-15), 0)
-		wait(0.00001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.3, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-110), math.rad(-15), 0)
-		wait(0.00001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.35, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-115), math.rad(-15), 0)
-		wait(0.00001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.4, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-120), math.rad(-15), 0)
-		wait(0.00001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-90), math.rad(-15), 0)	
-		Tool.AnimateValue.Value = "None"
-	end 
-	if Tool.AnimateValue.Value == "Reload" then 
-		local weld1 = welds[1]
-		local weld2 = welds[2]
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-90), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.4, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-90), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.4, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-95), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.4, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-100), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.4, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-105), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.4, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-110), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.4, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-115), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.45, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-120), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.9, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.5, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-120), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 1, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.55, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-120), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 1.1, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.57, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-120), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 1.2, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.6, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-120), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 1.3, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0.6, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-120), math.rad(-15), 0)
-		wait(0.0001)
-		weld1.C1 = CFrame.new(-0.5+1.5, 0.8, .9)* CFrame.fromEulerAnglesXYZ(math.rad(290), 0, math.rad(-90))
-		weld2.C1 = CFrame.new(-1, 0.8, 0.5-1.5) * CFrame.fromEulerAnglesXYZ(math.rad(-90), math.rad(-15), 0)	
-		Tool.AnimateValue.Value = "None"
-	end 
-end 
-
-Tool.AnimateValue.Changed:connect(Animate)
-
-end))
-Script7.Name = "LineConnect"
-Script7.Parent = Tool0
-Script7.Disabled = true
-table.insert(cors,sandbox(Script7,function()
-wait()
-local check = script.Part2
-local part1 = script.Part1.Value
-local part2 = script.Part2.Value
-local parent = script.Par.Value
-local color = script.Color
-local line = Instance.new("Part")
-line.TopSurface = 0
-line.BottomSurface = 0
-line.Reflectance = .5
-line.Name = "Laser"
-line.Transparency = 0.6
-line.Locked = true
-line.CanCollide = false
-line.Anchored = true
-line.formFactor = 0
-line.Size = Vector3.new(0.4,0.4,1)
-local mesh = Instance.new("BlockMesh")
-mesh.Parent = line
-while true do
-	if (check.Value==nil) then break end
-	if (part1==nil or part2==nil or parent==nil) then break end
-	if (part1.Parent==nil or part2.Parent==nil) then break end
-	if (parent.Parent==nil) then break end
-	local lv = CFrame.new(part1.Position,part2.Position)
-	local dist = (part1.Position-part2.Position).magnitude
-	line.Parent = parent
-	line.Material = "Neon"
-	line.BrickColor = color.Value.BrickColor
-	line.Reflectance = color.Value.Reflectance
-	line.Transparency = "0.2"
-	line.CFrame = CFrame.new(part1.Position+lv.lookVector*dist/2)
-	line.CFrame = CFrame.new(line.Position,part2.Position)
-	mesh.Scale = Vector3.new(.25,.25,dist)
-	wait()
-end
-line:remove()
-script:remove() 
-end))
-LocalScript8.Name = "MainScript"
-LocalScript8.Parent = Tool0
-table.insert(cors,sandbox(LocalScript8,function()
---Physics gun created by Killersoldier45
-wait() 
-tool = script.Parent
-lineconnect = tool.LineConnect
-object = nil
-mousedown = false
-found = false
-BP = Instance.new("BodyPosition")
-BP.maxForce = Vector3.new(math.huge*math.huge,math.huge*math.huge,math.huge*math.huge) --pwns everyone elses bodyposition
-BP.P = BP.P*10 --faster movement. less bounceback.
-dist = nil
-point = Instance.new("Part")
-point.Locked = true
-point.Anchored = true
-point.formFactor = 0
-point.Shape = 0
-point.Material = 'Neon'
-point.BrickColor = BrickColor.new("Toothpaste")
-point.Size = Vector3.new(1,1,1)
-point.CanCollide = false
-local mesh = Instance.new("SpecialMesh")
-mesh.MeshType = "Sphere"
-mesh.Scale = Vector3.new(.2,.2,.2)
-mesh.Parent = point
-handle = tool.Shoot
-front = tool.Shoot
-color = tool.Shoot
-objval = nil
-local hooked = false 
-local hookBP = BP:clone() 
-hookBP.maxForce = Vector3.new(30000,30000,30000) 
-
-function LineConnect(part1,part2,parent)
-	local p1 = Instance.new("ObjectValue")
-	p1.Value = part1
-	p1.Name = "Part1"
-	local p2 = Instance.new("ObjectValue")
-	p2.Value = part2
-	p2.Name = "Part2"
-	local par = Instance.new("ObjectValue")
-	par.Value = parent
-	par.Name = "Par"
-	local col = Instance.new("ObjectValue")
-	col.Value = color
-	col.Name = "Color"
-	local s = lineconnect:clone()
-	s.Disabled = false
-	p1.Parent = s
-	p2.Parent = s
-	par.Parent = s
-	col.Parent = s
-	s.Parent = workspace
-	if (part2==object) then
-		objval = p2
-	end
-end
-
-function onButton1Down(mouse)
-	if (mousedown==true) then return end
-	mousedown = true
-	coroutine.resume(coroutine.create(function()
-		local p = point:clone()
-		p.Parent = tool
-		LineConnect(front,p,workspace)
-		while (mousedown==true) do
-			p.Parent = tool
-			if (object==nil) then
-				if (mouse.Target==nil) then
-					local lv = CFrame.new(front.Position,mouse.Hit.p)
-					p.CFrame = CFrame.new(front.Position+(lv.lookVector*1000))
-				else
-					p.CFrame = CFrame.new(mouse.Hit.p)
-				end
-			else
-				LineConnect(front,object,workspace)
-				break
-			end
-			wait()
-		end
-		p:remove()
-	end))
-	while (mousedown==true) do
-		if (mouse.Target~=nil) then
-			local t = mouse.Target
-			if (t.Anchored==false) then
-				object = t
-				dist = (object.Position-front.Position).magnitude
-				break
-			end
-		end
-		wait()
-	end
-	while (mousedown==true) do
-		if (object.Parent==nil) then break end
-		local lv = CFrame.new(front.Position,mouse.Hit.p)
-		BP.Parent = object
-		BP.position = front.Position+lv.lookVector*dist
-		wait()
-	end
-	BP:remove()
-	object = nil
-	objval.Value = nil
-end
-
-function onKeyDown(key,mouse) 
-	local key = key:lower() 
-	local yesh = false 
-	if (key=="q") then 
-		if (dist>=5) then 
-			dist = dist-5 
-		end 
-	end 
-	if key == "t" then 
-	if (object==nil) then return end 
-	for _,v in pairs(object:children()) do 
-	if v.className == "BodyGyro" then 
-	return nil 
-	end 
-	end 
-	BG = Instance.new("BodyGyro") 
-	BG.maxTorque = Vector3.new(math.huge,math.huge,math.huge) 
-	BG.cframe = CFrame.new(object.CFrame.p) 
-	BG.Parent = object 
-	repeat wait() until(object.CFrame == CFrame.new(object.CFrame.p)) 
-	BG.Parent = nil 
-	if (object==nil) then return end 
-	for _,v in pairs(object:children()) do 
-	if v.className == "BodyGyro" then 
-	v.Parent = nil 
-	end 
-	end 
-	object.Velocity = Vector3.new(0,0,0) 
-	object.RotVelocity = Vector3.new(0,0,0) 
-	end 
-	if (key=="e") then
-		dist = dist+5
-	end
-	if (string.byte(key)==27) then 
-		if (object==nil) then return end
-		local e = Instance.new("Explosion")
-		e.Parent = workspace
-		e.Position = object.Position
-		color.BrickColor = BrickColor.Black()
-		point.BrickColor = BrickColor.White() 
-		wait(.48)
-		color.BrickColor = BrickColor.White() 
-		point.BrickColor = BrickColor.Black() 
-	end
-	if (key=="") then 
-		if not hooked then 
-		if (object==nil) then return end 
-		hooked = true 
-		hookBP.position = object.Position 
-		if tool.Parent:findFirstChild("Torso") then 
-		hookBP.Parent = tool.Parent.Torso 
-		if dist ~= (object.Size.x+object.Size.y+object.Size.z)+5 then 
-		dist = (object.Size.x+object.Size.y+object.Size.z)+5 
-		end 
-		end 
-		else 
-		hooked = false 
-		hookBP.Parent = nil 
-		end 
-	end 
-	if (key=="r") then 
-		if (object==nil) then return end 
-		color.BrickColor = BrickColor.new("Toothpaste") 
-		point.BrickColor = BrickColor.new("Toothpaste") 
-		object.Parent = nil 
-		wait(.48) 
-		color.BrickColor = BrickColor.new("Toothpaste")
-		point.BrickColor = BrickColor.new("Toothpaste")
-	end 
-	if (key=="x") then 
-	if (object==nil) then return end 
-	local New = object:clone() 
-	New.Parent = object.Parent 
-	for _,v in pairs(New:children()) do 
-	if v.className == "BodyPosition" or v.className == "BodyGyro" then 
-	v.Parent = nil 
-	end 
-	end 
-	object = New 
-	mousedown = false 
-	mousedown = true 
-	LineConnect(front,object,workspace) 
-		while (mousedown==true) do
-		if (object.Parent==nil) then break end
-		local lv = CFrame.new(front.Position,mouse.Hit.p)
-		BP.Parent = object
-		BP.position = front.Position+lv.lookVector*dist
-		wait()
-	end
-	BP:remove()
-	object = nil
-	objval.Value = nil
-	end 
-	if (key=="c") then 
-		local Cube = Instance.new("Part") 
-		Cube.Locked = true 
-		Cube.Size = Vector3.new(4,4,4) 
-		Cube.formFactor = 0 
-		Cube.TopSurface = 0 
-		Cube.BottomSurface = 0 
-		Cube.Name = "WeightedStorageCube" 
-		Cube.Parent = workspace 
-		Cube.CFrame = CFrame.new(mouse.Hit.p) + Vector3.new(0,2,0) 
-		for i = 0,5 do 
-			local Decal = Instance.new("Decal") 
-			Decal.Texture = "http://www.roblox.com/asset/?id=2662260" 
-			Decal.Face = i 
-			Decal.Name = "WeightedStorageCubeDecal" 
-			Decal.Parent = Cube 
-		end 
-	end 
-	if (key=="") then 
-		if dist ~= 15 then 
-			dist = 15 
-		end 
-	end 
-end
-
-function onEquipped(mouse)
-	keymouse = mouse
-	local char = tool.Parent
-	human = char.Humanoid
-	human.Changed:connect(function() if (human.Health==0) then mousedown = false BP:remove() point:remove() tool:remove() end end)
-	mouse.Button1Down:connect(function() onButton1Down(mouse) end)
-	mouse.Button1Up:connect(function() mousedown = false end)
-	mouse.KeyDown:connect(function(key) onKeyDown(key,mouse) end)
-	mouse.Icon = "rbxassetid://2184939409"
-end
-
-tool.Equipped:connect(onEquipped)
-end))
-Part9.Name = "GlowPart"
-Part9.Parent = Tool0
-Part9.Material = Enum.Material.Neon
-Part9.BrickColor = BrickColor.new("Cyan")
-Part9.Transparency = 0.5
-Part9.Rotation = Vector3.new(0, -89.5899963, 0)
-Part9.Shape = Enum.PartType.Cylinder
-Part9.Size = Vector3.new(1.20000005, 0.649999976, 2)
-Part9.CFrame = CFrame.new(-54.8191681, 0.773548007, -0.0522949994, 0.00736002205, 4.68389771e-11, -0.999974668, 4.72937245e-11, 1, 1.41590961e-10, 0.999974668, 5.09317033e-11, 0.00736002252)
-Part9.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Part9.Position = Vector3.new(-54.8191681, 0.773548007, -0.0522949994)
-Part9.Orientation = Vector3.new(0, -89.5799942, 0)
-Part9.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Script10.Name = "Glow Script"
-Script10.Parent = Part9
-table.insert(cors,sandbox(Script10,function()
-while true do
-wait(0.05)
-script.Parent.Transparency = .5
-wait(0.05)
-script.Parent.Transparency = .6
-wait(0.05)
-script.Parent.Transparency = .7
-wait(0.05)
-script.Parent.Transparency = .8
-wait(0.05)
-script.Parent.Transparency = .9
-wait(0.05)
-script.Parent.Transparency = .8
-wait(0.05)
-script.Parent.Transparency = .7
-wait(0.05)
-script.Parent.Transparency = .6
-wait(0.05)
-script.Parent.Transparency = .5
-end
-
-end))
-Part11.Name = "GlowPart"
-Part11.Parent = Tool0
-Part11.Material = Enum.Material.Neon
-Part11.BrickColor = BrickColor.new("Cyan")
-Part11.Transparency = 0.5
-Part11.Rotation = Vector3.new(-89.3799973, -55.7399979, -89.25)
-Part11.Size = Vector3.new(0.280000001, 0.25999999, 0.200000003)
-Part11.CFrame = CFrame.new(-54.9808807, 0.99843204, 0.799362957, 0.00736002205, 0.562958956, -0.826454222, 4.72937245e-11, 0.826475084, 0.56297338, 0.999974668, -0.00414349511, 0.00608287565)
-Part11.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Part11.Position = Vector3.new(-54.9808807, 0.99843204, 0.799362957)
-Part11.Orientation = Vector3.new(-34.2599983, -89.5799942, 0)
-Part11.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Script12.Name = "Glow Script"
-Script12.Parent = Part11
-table.insert(cors,sandbox(Script12,function()
-while true do
-wait(0.05)
-script.Parent.Transparency = .5
-wait(0.05)
-script.Parent.Transparency = .6
-wait(0.05)
-script.Parent.Transparency = .7
-wait(0.05)
-script.Parent.Transparency = .8
-wait(0.05)
-script.Parent.Transparency = .9
-wait(0.05)
-script.Parent.Transparency = .8
-wait(0.05)
-script.Parent.Transparency = .7
-wait(0.05)
-script.Parent.Transparency = .6
-wait(0.05)
-script.Parent.Transparency = .5
-end
-
-end))
-Part13.Name = "GlowPart"
-Part13.Parent = Tool0
-Part13.Material = Enum.Material.Neon
-Part13.BrickColor = BrickColor.new("Cyan")
-Part13.Transparency = 0.5
-Part13.Rotation = Vector3.new(95.1500015, -53.8199997, 98.0799942)
-Part13.Size = Vector3.new(0.280000001, 0.25999999, 0.200000003)
-Part13.CFrame = CFrame.new(-54.5909271, 0.978429973, 0.799362957, -0.0830051303, -0.584483683, -0.807150841, 0.0241250042, 0.808528602, -0.58796227, 0.996258855, -0.0682764053, -0.0530113392)
-Part13.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Part13.Position = Vector3.new(-54.5909271, 0.978429973, 0.799362957)
-Part13.Orientation = Vector3.new(36.0099983, -93.7599945, 1.70999992)
-Part13.Color = Color3.new(0.0156863, 0.686275, 0.92549)
-Script14.Name = "Glow Script"
-Script14.Parent = Part13
-table.insert(cors,sandbox(Script14,function()
-while true do
-wait(0.05)
-script.Parent.Transparency = .5
-wait(0.05)
-script.Parent.Transparency = .6
-wait(0.05)
-script.Parent.Transparency = .7
-wait(0.05)
-script.Parent.Transparency = .8
-wait(0.05)
-script.Parent.Transparency = .9
-wait(0.05)
-script.Parent.Transparency = .8
-wait(0.05)
-script.Parent.Transparency = .7
-wait(0.05)
-script.Parent.Transparency = .6
-wait(0.05)
-script.Parent.Transparency = .5
-end
-
-end))
-for i,v in pairs(mas:GetChildren()) do
-	v.Parent = game:GetService("Players").LocalPlayer.Backpack
-	pcall(function() v:MakeJoints() end)
-end
-mas:Destroy()
-for i,v in pairs(cors) do
-	spawn(function()
-		pcall(v)
-	end)
-end
-    end,
- })
-
- local Button = ToolsTab:CreateButton({
-    Name = "FE Portal Gun",
-    Callback = function()
-        --[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
---Made by minecrafterpro1301, aka @randomsuki 
---For science, you exploiter.
-loadstring(game:HttpGet('https://raw.githubusercontent.com/randomguy194/dollar-tree-portal-gun/main/portal%20gun%20ported'))()
---[[
-This was a triumph.
-I'm making a note here:
-HUGE SUCCESS.
-It's hard to overstate my satisfaction.
-Aperture Science.
-We do what we must because we can.
-For the good of all of us.
-Except the ones who are dead. 
-
-But there's no sense crying over every mistake
-You just keep on trying till you run out of cake.
-And the science gets done and you make a neat gun.
-For the people who are still alive.
-
-I'm not even angry.
-I'm being so sincere right now.
-Even though you broke my heart.
-And killed me.
-And tore me to pieces.
-And threw every piece into a fire.
-As they burned it hurt because
-I was so happy for you!
-Now, these points of data make a beautiful line.
-And we're out of beta, we're releasing on time.
-So I'm GLaD I got burned, think of all the things we learned
-for the people who are still alive.
-
-Go ahead and leave me.
-I think I'd prefer to stay inside.
-Maybe you'll find someone else
-to help you.
-Maybe Black Mesa?
-THAT WAS A JOKE. HA-HA, FAT CHANCE.
-Anyway, this cake is great.           THE CAKE IS A LIE. THE CAKE IS A LIE. THE CAKE IS A LIE. THE CAKE IS A LIE. THE CAKE IS A LIE.
-It's so delicious and moist.
-Look at me, still talking when there's science to do.
-When I look out there, it makes me GLaD I'm not you.
-I've experiments to run, there is research to be done.
-On the people who are still alive.
-
-And believe me, I am still alive.
-I'm doing science and I'm still alive.
-I feel fantastic and I'm still alive.
-While you're dying, I'll be still alive.
-And when you're dead, I will be still alive.
-Still alive.
-Still alive.
-]]
-    end,
- })
-
- local Button = ToolsTab:CreateButton({
-    Name = "FE Jerk Off R6",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastefy.app/wa3v2Vgm/raw"))()
-    end,
- })
-
- local Button = ToolsTab:CreateButton({
-    Name = "FE Jerk Off R15",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastefy.app/YZoglOyJ/raw"))()
-    end,
- })
-
- local Button = ToolsTab:CreateButton({
     Name = "Shears (Delete Objects, No FE)",
     Callback = function()
         loadstring(game:HttpGet("https://pastebin.com/raw/WPX2BQBn"))()
@@ -13696,7 +13825,7 @@ Still alive.
     end,
  })
 
- local OthersTab = Window:CreateTab("☯️Others", 4483362458) -- Title, Image
+ local OthersTab = Window:CreateTab("☯️Others", "circle-ellipsis") -- Title, Image
  local OthersSection = OthersTab:CreateSection("Others")
 
  local Button = OthersTab:CreateButton({
@@ -13882,60 +14011,25 @@ end)
  })
 
  local Button = OthersTab:CreateButton({
-    Name = "Universal Copy Place ID",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/hassanxzayn-lua/NEOXHUBMAIN/refs/heads/main/placeidcopier"))()
-    end,
- })
-
- local Button = OthersTab:CreateButton({
-    Name = "Universal Copy Avatar",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Luarmor123/YHUB-Community/refs/heads/main/Avatar_Copier.lua"))()
-    end,
- })
-
- local Button = OthersTab:CreateButton({
     Name = "Keyboard (Mobile Script)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/ltseverydayyou/uuuuuuu/refs/heads/main/VirtualKeyboard.lua"))();
     end,
  })
 
- local Button = OthersTab:CreateButton({
-    Name = "Shears (Delete Objects, No FE)",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/WPX2BQBn"))()
-    end,
- })
-
- local Button = OthersTab:CreateButton({
-    Name = "Rocket Launcher (Change Objects, No FE)",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/notpoiu/Scripts/main/rocketLauncher.lua"))()
-    end,
- })
-
- local GamesTab = Window:CreateTab("🎮Games Scripts", 4483362458) -- Title, Image
- local PrisonSection = GamesTab:CreateSection("👮Prison Life")
- 
- local Button = GamesTab:CreateButton({
-    Name = "Prizz Life V0.8.1",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/EnesXVC/Games-Scripts/main/Prison-Life-Prizz-Life"))()
-    end,
-})
+local GamesTab = Window:CreateTab("🎮Games Scripts", "gamepad-2") -- Title, Image
 
 local MurderSection = GamesTab:CreateSection("🔪🕵️‍♂️Murder Mystery 2")
 
 local Button = GamesTab:CreateButton({
-    Name = "Eclipse Hub (Best Rage, Legit)",
+    Name = "X-Hub",
     Callback = function()
-        getgenv().mainKey = "nil"
-
-local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or (syn and syn.request),assert,tostring,"https\58//api.eclipsehub.xyz/auth";c(a and b,"Executor not Supported")a(b({Url=e.."\?\107e\121\61"..d(mainKey),Headers={["User-Agent"]="Eclipse"}}).Body)()
+        --[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+loadstring(game:HttpGet("https://raw.githubusercontent.com/Au0yX/Community/main/XhubMM2"))()
     end,
- })
+})
 
  local Button = GamesTab:CreateButton({
     Name = "Overdrive H (Best Semi-Rage, Legit, Keysystem)",
@@ -13943,5 +14037,19 @@ local a,b,c,d,e=loadstring,request or http_request or (http and http.request) or
         ODH_KEY = "" -- if you are a free user, enter your key here to auto validate.
 
 loadstring(game:HttpGet("https://api.overdrivehub.xyz/v1/auth"))()
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "MM2 Value Checker",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/AmareScripts/MM2/refs/heads/main/Trade%25Helper.lua"))()
+    end,
+ })
+
+ local Button = GamesTab:CreateButton({
+    Name = "MM2 Trade Helper",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/MaybeScripting/RsAHub/refs/heads/main/RsAHub.lua", true))()
     end,
  })
