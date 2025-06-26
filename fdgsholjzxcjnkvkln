@@ -46,10 +46,10 @@ local Window = Rayfield:CreateWindow({
  })
 
  local PremiumTab = Window:CreateTab("👑💎Premium Features", "gem") -- Title, Image
- local PremiumSection = PremiumTab:CreateSection("Private Anti-Aim (Enable all scripts)")
+ local PremiumSection = PremiumTab:CreateSection("Script")
 
  local Button = PremiumTab:CreateButton({
-    Name = "Private Anti-Aim",
+    Name = "Private Anti-Aim (Enable All Functions)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/vcxzxcfgh/refs/heads/main/gjkftuytrutyu"))()
     end,
@@ -11568,7 +11568,7 @@ workspace.FallenPartsDestroyHeight = -500
  })
 
  local ServerTab = Window:CreateTab("🖥️Server", "server") -- Title, Image
- local ServersSection = ServerTab:CreateSection("Script")
+ local ServersSection = ServerTab:CreateSection("Scripts")
 
  local Button = ServerTab:CreateButton({
     Name = "Jason Spy (Remote Spy)",
@@ -12445,7 +12445,7 @@ end)
  })
 
  local ToolsTab = Window:CreateTab("🔨Tools", "drill") -- Title, Image
- local ToolsSection = ToolsTab:CreateSection("Tools")
+ local ToolsSection = ToolsTab:CreateSection("Scripts")
 
  local Button = ToolsTab:CreateButton({
     Name = "Flashlight",
@@ -13826,7 +13826,7 @@ end
  })
 
  local OthersTab = Window:CreateTab("☯️Others", "circle-ellipsis") -- Title, Image
- local OthersSection = OthersTab:CreateSection("Others")
+ local OthersSection = OthersTab:CreateSection("Scripts")
 
  local Button = OthersTab:CreateButton({
     Name = "Avtor AI",
