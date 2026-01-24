@@ -39,9 +39,56 @@ local Window = Rayfield:CreateWindow({
  local PremiumSection = PremiumTab:CreateSection("Script")
 
  local Button = PremiumTab:CreateButton({
-    Name = "OPGL H (Murder Mystery 2)",
+    Name = "Adrenalin X (Murder Mystery 2)",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/OPGL-H/refs/heads/main/Opengl%20H"))()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/WhoIAmDark/Adrenalin-X-PC/refs/heads/main/ADRX"))()
+    end,
+ })
+
+ local Button = PremiumTab:CreateButton({
+    Name = "Air KeySys Bypass",
+    Callback = function()
+        local old = setclipboard;
+getgenv().setclipboard = function(a)
+ getfenv(2).Whitelisted = true
+ return old(a)
+end
+    end,
+ })
+
+ local Button = PremiumTab:CreateButton({
+    Name = "Adonis KeySys Bypass",
+    Callback = function()
+        local function BypassAdonis()
+            local Query = {
+             --Hash = "605A34235509ABBB6946D10B499B526AC72774E441C3F9BAE4B63D321C6E759347D864CE879B39864743C0EEAC444FFF";
+             Constants = {" - On Xbox", " - On mobile", "_"};
+             IgnoreExecutor = true;
+            }
+           
+            local Detected = filtergc("function", Query); Detected = Detected and Detected[1];
+            if not Detected then
+             --Telemetry:Log("BypassAntiCheat.BypassAdonis", LPH_LINE, "Failed to locate \"Detected\" function from Adonis Anti module.")
+             return LocalClient:Kick("Anticheat bypass failed to activate. This can be the result of an anticheat update. Please contact support.")
+            end
+           
+            local iDetour = Hooks.Create(REnv.debug.info)
+            local dDetour = Hooks.Create(Detected)
+           
+            local a, b, c, d, e, f = REnv.debug.info(Detected, "slanf")
+            local Jump = function(...)
+             local Args = {...}
+             if Args[1] == Detected and Args[2] == "slanf" then
+              return a, b, c, d, e, f end;
+           
+             return iDetour:Original(...)
+            end
+           
+            iDetour:SetDetour(Jump)
+            dDetour:SetDetour(function() return task.wait(9e10) end)
+            iDetour:Enable()
+            dDetour:Enable()
+           end
     end,
  })
 
@@ -50,6 +97,13 @@ local Window = Rayfield:CreateWindow({
     Name = "Private Anti-Aim (Enable All Functions)",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/vcxzxcfgh/refs/heads/main/gjkftuytrutyu"))()
+    end,
+ })
+
+ local Button = PremiumTab:CreateButton({
+    Name = "MM2 Trade Helper",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/zxchufdgkollkjdfghjkl/refs/heads/main/cxznkfgkldfghjkl"))
     end,
  })
 
@@ -1790,7 +1844,7 @@ local function FHUIEVNIVIROINSIHATENIGGERSOHIOSKIBIDI123()
         --[[
 	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
 ]]
-loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/09a6a950b099a8edaf4537f7bb0e82210dadf83b397b9b48010e0558480aa230/download"))()
+loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/public/b33489bb370110edc6daf7f010dc9294683f24e4bac0d01229a9dd741260c305/download"))()
     end,
  })
 
@@ -1850,9 +1904,9 @@ loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/pub
  })
 
  local Button = HubsTab:CreateButton({
-    Name = "Script Hub V3",
+    Name = "Animation Changer",
     Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/scripthubekitten/SCRIPTHUBV3/main/SCRIPTHUBV3", true))()
+        loadstring(game:HttpGet("https://pastebin.com/raw/KFHn6bnB", true))()
     end,
  })
 
@@ -1877,14 +1931,6 @@ loadstring(game:HttpGet("https://api.junkie-development.de/api/v1/luascripts/pub
     Name = "NPC Esp 3.0",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/skid7543w7hdghedty/winstrikstg32jngdll/refs/heads/main/bigwetrgjfjknsdjkg"))()
-
-    end,
- })
-
- local Button = CombatTab:CreateButton({
-    Name = "Friends Esp (Teamers)",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/6n6A85CR"))("T.me/AvtorScripts")
 
     end,
  })
@@ -3926,81 +3972,6 @@ end
  })
 
  local Button = TrollTab:CreateButton({
-    Name = "BlackHole (Press E)",
-    Callback = function()
-        local UserInputService = game:GetService("UserInputService")
-local Mouse = game:GetService("Players").LocalPlayer:GetMouse()
-local Folder = Instance.new("Folder", game:GetService("Workspace"))
-local Part = Instance.new("Part", Folder)
-local Attachment1 = Instance.new("Attachment", Part)
-Part.Anchored = true
-Part.CanCollide = false
-Part.Transparency = 1
-local Updated = Mouse.Hit + Vector3.new(0, 5, 0)
-local NetworkAccess = coroutine.create(function()
-    settings().Physics.AllowSleep = false
-    while game:GetService("RunService").RenderStepped:Wait() do
-        for _, Players in next, game:GetService("Players"):GetPlayers() do
-            if Players ~= game:GetService("Players").LocalPlayer then
-                Players.MaximumSimulationRadius = 0 
-                sethiddenproperty(Players, "SimulationRadius", 0) 
-            end 
-        end
-        game:GetService("Players").LocalPlayer.MaximumSimulationRadius = math.pow(math.huge,math.huge)
-        setsimulationradius(math.huge) 
-    end 
-end) 
-coroutine.resume(NetworkAccess)
-local function ForcePart(v)
-    if v:IsA("Part") and v.Anchored == false and v.Parent:FindFirstChild("Humanoid") == nil and v.Parent:FindFirstChild("Head") == nil and v.Name ~= "Handle" then
-        Mouse.TargetFilter = v
-        for _, x in next, v:GetChildren() do
-            if x:IsA("BodyAngularVelocity") or x:IsA("BodyForce") or x:IsA("BodyGyro") or x:IsA("BodyPosition") or x:IsA("BodyThrust") or x:IsA("BodyVelocity") or x:IsA("RocketPropulsion") then
-                x:Destroy()
-            end
-        end
-        if v:FindFirstChild("Attachment") then
-            v:FindFirstChild("Attachment"):Destroy()
-        end
-        if v:FindFirstChild("AlignPosition") then
-            v:FindFirstChild("AlignPosition"):Destroy()
-        end
-        if v:FindFirstChild("Torque") then
-            v:FindFirstChild("Torque"):Destroy()
-        end
-        v.CanCollide = false
-        local Torque = Instance.new("Torque", v)
-        Torque.Torque = Vector3.new(100000, 100000, 100000)
-        local AlignPosition = Instance.new("AlignPosition", v)
-        local Attachment2 = Instance.new("Attachment", v)
-        Torque.Attachment0 = Attachment2
-        AlignPosition.MaxForce = 9999999999999999
-        AlignPosition.MaxVelocity = math.huge
-        AlignPosition.Responsiveness = 200
-        AlignPosition.Attachment0 = Attachment2 
-        AlignPosition.Attachment1 = Attachment1
-    end
-end
-for _, v in next, game:GetService("Workspace"):GetDescendants() do
-    ForcePart(v)
-end
-game:GetService("Workspace").DescendantAdded:Connect(function(v)
-    ForcePart(v)
-end)
-UserInputService.InputBegan:Connect(function(Key, Chat)
-    if Key.KeyCode == Enum.KeyCode.E and not Chat then
-       Updated = Mouse.Hit + Vector3.new(0, 5, 0)
-    end
-end)
-spawn(function()
-    while game:GetService("RunService").RenderStepped:Wait() do
-        Attachment1.WorldCFrame = Updated
-    end
-end)
-    end,
- })
-
- local Button = TrollTab:CreateButton({
     Name = "BlackHole Tool",
     Callback = function()
         loadstring(game:HttpGet("https://gist.githubusercontent.com/sovetskii-shashlik/eaeb8a759ac9f84212f4dd86da352d98/raw/5fd3320f6c8ae46a0963c03f30e595915aa14aa5/Shashlik-blackhole.lua"))()
@@ -4336,74 +4307,12 @@ end
  local Button = TrollTab:CreateButton({
     Name = "FE Portal Gun",
     Callback = function()
-        --[[
-	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
-]]
---Made by minecrafterpro1301, aka @randomsuki 
---For science, you exploiter.
 loadstring(game:HttpGet('https://raw.githubusercontent.com/randomguy194/dollar-tree-portal-gun/main/portal%20gun%20ported'))()
---[[
-This was a triumph.
-I'm making a note here:
-HUGE SUCCESS.
-It's hard to overstate my satisfaction.
-Aperture Science.
-We do what we must because we can.
-For the good of all of us.
-Except the ones who are dead. 
-
-But there's no sense crying over every mistake
-You just keep on trying till you run out of cake.
-And the science gets done and you make a neat gun.
-For the people who are still alive.
-
-I'm not even angry.
-I'm being so sincere right now.
-Even though you broke my heart.
-And killed me.
-And tore me to pieces.
-And threw every piece into a fire.
-As they burned it hurt because
-I was so happy for you!
-Now, these points of data make a beautiful line.
-And we're out of beta, we're releasing on time.
-So I'm GLaD I got burned, think of all the things we learned
-for the people who are still alive.
-
-Go ahead and leave me.
-I think I'd prefer to stay inside.
-Maybe you'll find someone else
-to help you.
-Maybe Black Mesa?
-THAT WAS A JOKE. HA-HA, FAT CHANCE.
-Anyway, this cake is great.           THE CAKE IS A LIE. THE CAKE IS A LIE. THE CAKE IS A LIE. THE CAKE IS A LIE. THE CAKE IS A LIE.
-It's so delicious and moist.
-Look at me, still talking when there's science to do.
-When I look out there, it makes me GLaD I'm not you.
-I've experiments to run, there is research to be done.
-On the people who are still alive.
-
-And believe me, I am still alive.
-I'm doing science and I'm still alive.
-I feel fantastic and I'm still alive.
-While you're dying, I'll be still alive.
-And when you're dead, I will be still alive.
-Still alive.
-Still alive.
-]]
     end,
  })
-
 
  local Button = TrollTab:CreateButton({
     Name = "FE Bring Parts Fling",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/Bac0nHck/Scripts/main/BringFlingPlayers"))("More Scripts: t.me/arceusxscripts")
-    end,
- })
-
- local Button = TrollTab:CreateButton({
-    Name = "FE Bring Parts Fling V2",
     Callback = function()
         loadstring(game:HttpGet("https://github.com/sovetskii-shashlik/Shashlik-bring-parts/raw/refs/heads/main/Shashlik%20Bring%20Parts%20v2"))()
     end,
@@ -7034,92 +6943,6 @@ for i,v in ipairs(game:GetService("Workspace"):GetDescendants()) do
  })
 
  local Button = OthersTab:CreateButton({
-    Name = "Equip All Tools",
-    Callback = function()
-        activated = false
-local ScreenGui = Instance.new("ScreenGui")
-local TextButton = Instance.new("TextButton")
-local UICorner = Instance.new("UICorner")
-ScreenGui.Parent = game.CoreGui
-TextButton.Parent = ScreenGui
-TextButton.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextButton.BorderSizePixel = 0
-TextButton.Position = UDim2.new(0.431767344, 0, 0.282663316, 0)
-TextButton.Size = UDim2.new(0, 200, 0, 50)
-TextButton.Font = Enum.Font.FredokaOne
-TextButton.Text = "Equip ALL Tools"
-TextButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextButton.TextScaled = true
-UICorner.CornerRadius = UDim.new(0, 16)
-UICorner.Parent = TextButton
-local UserInputService = game:GetService("UserInputService")
-local runService = (game:GetService("RunService"));
-local gui = TextButton
-local dragging
-local dragInput
-local dragStart
-local startPos
-function Lerp(a, b, m)
-	return a + (b - a) * m
-end;
-local lastMousePos
-local lastGoalPos
-local DRAG_SPEED = (8); -- // The speed of the UI darg.
-function Update(dt)
-	if not (startPos) then return end;
-	if not (dragging) and (lastGoalPos) then
-		gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, lastGoalPos.X.Offset, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, lastGoalPos.Y.Offset, dt * DRAG_SPEED))
-		return 
-	end;
-	local delta = (lastMousePos - UserInputService:GetMouseLocation())
-	local xGoal = (startPos.X.Offset - delta.X);
-	local yGoal = (startPos.Y.Offset - delta.Y);
-	lastGoalPos = UDim2.new(startPos.X.Scale, xGoal, startPos.Y.Scale, yGoal)
-	gui.Position = UDim2.new(startPos.X.Scale, Lerp(gui.Position.X.Offset, xGoal, dt * DRAG_SPEED), startPos.Y.Scale, Lerp(gui.Position.Y.Offset, yGoal, dt * DRAG_SPEED))
-end;
-gui.InputBegan:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-		dragging = true
-		dragStart = input.Position
-		startPos = gui.Position
-		lastMousePos = UserInputService:GetMouseLocation()
-		input.Changed:Connect(function()
-			if input.UserInputState == Enum.UserInputState.End then
-				dragging = false
-			end
-		end)
-	end
-end)
-gui.InputChanged:Connect(function(input)
-	if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-		dragInput = input
-	end
-end)
-runService.Heartbeat:Connect(Update)
-TextButton.MouseButton1Click:Connect(function()
-	if activated then
-        for i,v in pairs(game.Players.LocalPlayer.Character:GetChildren()) do
-		    if v:IsA("Tool") then
-			    v.Parent = game.Players.LocalPlayer.Backpack
-		    end
-	    end
-        activated = false
-        TextButton.Text = "Equip ALL Tools"
-    else
-        for i,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
-		    if v:IsA("Tool") then
-			    v.Parent = game.Players.LocalPlayer.Character
-		    end
-	    end
-        activated = true
-        TextButton.Text = "Unequip ALL Tools"
-    end
-end)
-    end,
- })
-
- local Button = OthersTab:CreateButton({
     Name = "Resolution Stretching",
     Callback = function()
         getgenv().Resolution = {
@@ -7147,7 +6970,7 @@ end)
 
 local GamesTab = Window:CreateTab("🎮Games Scripts", "gamepad-2") -- Title, Image
 
-local MurderSection = GamesTab:CreateSection("🔪🕵️‍♂️Murder Mystery 2")
+local MurderSection = GamesTab:CreateSection("🔪Murder Mystery 2")
 
 local Button = GamesTab:CreateButton({
     Name = "Capybara Hub (Keysytem)",
@@ -7163,19 +6986,5 @@ loadstring(game:HttpGet("https://pastebin.com/raw/3Pvr5Pfy"))()
         ODH_KEY = "" -- if you are a free user, enter your key here to auto validate.
 
 loadstring(game:HttpGet("https://api.overdrivehub.xyz/v1/auth"))()
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "MM2 Value Checker",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/AmareScripts/MM2/refs/heads/main/Trade%25Helper.lua"))()
-    end,
- })
-
- local Button = GamesTab:CreateButton({
-    Name = "MM2 Trade Helper",
-    Callback = function()
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/MaybeScripting/RsAHub/refs/heads/main/RsAHub.lua", true))()
     end,
  })
